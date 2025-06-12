@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Altın Fiyatları</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2rem;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Güncel Altın Fiyatları</h1>
+    <table id="fiyatTablosu">
+        <thead>
+            <tr>
+                <th>Tür</th>
+                <th>Alış</th>
+                <th>Satış</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        fetch('fiyatlar.json')
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.querySelector('#fiyatTablosu tbody');
+                Object.entries(data).forEach(([tur, fiyat]) => {
+                    const satir = document.createElement('tr');
+                    satir.innerHTML = `<td>${tur}</td><td>${fiyat.alış}</td><td>${fiyat.satış}</td>`;
+                    tbody.appendChild(satir);
+                });
+            })
+            .catch(err => {
+                document.body.innerHTML += "<p>Veri alınamadı.</p>";
+                console.error(err);
+            });
+    </script>
+</body>
+
+</html>
