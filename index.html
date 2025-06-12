@@ -189,6 +189,7 @@
         let sonVeri = null;
 
         function guncelleTablo(data) {
+            delete data.guncellemeZamani;
             const tbody = document.querySelector('#fiyatTablosu tbody');
             tbody.innerHTML = ""; // eski satırları temizle
 
