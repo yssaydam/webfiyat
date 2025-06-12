@@ -279,10 +279,7 @@
                     });
 
                     if (artan || azalan) {
-                        let mesaj = "📢 Fiyatlar ";
-                        if (artan && !azalan) mesaj += "yükseldi 🔼";
-                        else if (!artan && azalan) mesaj += "düştü 🔽";
-                        else mesaj += "güncellendi 🔄";
+                        let mesaj = "📢 Fiyatlar güncellendi";
                         gosterBildirim(mesaj);
                     }
 
