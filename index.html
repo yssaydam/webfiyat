@@ -119,6 +119,33 @@
                 display: none;
             }
         }
+
+        .fark-ok {
+            font-size: 2rem;
+            animation: fadeOut 10s forwards;
+        }
+
+        .green-ok {
+            color: green;
+        }
+
+        .red-ok {
+            color: red;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -180,9 +207,9 @@
                     const eski = parseFloat(oncekiFiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
                     if (!isNaN(yeni) && !isNaN(eski)) {
                         if (yeni > eski) {
-                            fark = " <span style='color:green;'>↑</span>";
+                            fark = " <span class='fark-ok green-ok'>↑</span>";
                         } else if (yeni < eski) {
-                            fark = " <span style='color:red;'>↓</span>";
+                            fark = " <span class='fark-ok red-ok'>↓</span>";
                         }
                     }
                 }
