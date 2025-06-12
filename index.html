@@ -159,6 +159,24 @@
                 document.body.innerHTML += "<p>Veri alınamadı.</p>";
                 console.error(err);
             });
+
+        let sonVeri = null;
+
+        async function kontrolEtVeYenile() {
+            try {
+                const res = await fetch('fiyatlar.json', { cache: "no-store" });
+                const yeniVeri = await res.json();
+                const veriStr = JSON.stringify(yeniVeri);
+                if (sonVeri && veriStr !== sonVeri) {
+                    location.reload();
+                }
+                sonVeri = veriStr;
+            } catch (e) {
+                console.error("Veri kontrol edilemedi", e);
+            }
+        }
+
+        setInterval(kontrolEtVeYenile, 10000); // 10 saniyede bir kontrol et
     </script>
 </body>
 
