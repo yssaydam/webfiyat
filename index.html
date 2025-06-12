@@ -189,8 +189,13 @@
         let sonVeri = null;
 
         function guncelleTablo(data) {
-            document.getElementById("guncellemeZamani").textContent =
-                "Son Güncelleme: " + new Date().toLocaleString("tr-TR");
+            if (data?.guncellemeZamani) {
+                document.getElementById("guncellemeZamani").textContent =
+                    "Son Güncelleme: " + data.guncellemeZamani;
+            } else {
+                document.getElementById("guncellemeZamani").textContent =
+                    "Son Güncelleme: Bilinmiyor";
+            }
 
             const tbody = document.querySelector('#fiyatTablosu tbody');
             tbody.innerHTML = ""; // eski satırları temizle
