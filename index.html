@@ -157,15 +157,18 @@
                 // Önceki değer varsa farkı hesapla
                 let oncekiFiyat = sonVeri ? sonVeri[tur] : null;
                 let fark = "";
+                let okIsareti = "";
                 if (oncekiFiyat && fiyat.satış && oncekiFiyat.satış) {
-                    const yeni = parseFloat(fiyat.satış.replace(".", "").replace(",", "."));
-                    const eski = parseFloat(oncekiFiyat.satış.replace(".", "").replace(",", "."));
-                    if (yeni > eski) {
-                        fark = " 🔼";
-                        satir.style.color = "green";
-                    } else if (yeni < eski) {
-                        fark = " 🔽";
-                        satir.style.color = "red";
+                    const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                    const eski = parseFloat(oncekiFiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                    if (!isNaN(yeni) && !isNaN(eski)) {
+                        if (yeni > eski) {
+                            fark = " <span style='color:green;'>↑</span>";
+                            satir.style.color = "green";
+                        } else if (yeni < eski) {
+                            fark = " <span style='color:red;'>↓</span>";
+                            satir.style.color = "red";
+                        }
                     }
                 }
 
