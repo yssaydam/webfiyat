@@ -146,6 +146,45 @@
                 opacity: 0;
             }
         }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            min-width: 220px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+        }
+
+        .phone-btn {
+            background-color: #c89e50;
+            color: white;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .instagram-btn {
+            background-color: #e1306c;
+            color: white;
+        }
+
+        .action-button img {
+            height: 28px;
+            margin-right: 12px;
+        }
     </style>
 </head>
 
@@ -296,23 +335,16 @@
 
     </script>
     <div
-        style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;">
-        <a href="tel:+905394325678"
-            style="display: flex; align-items: center; justify-content: center; background-color: #c89e50; color: white; padding: 14px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 3px 8px rgba(0,0,0,0.25); min-width: 180px;">
-            📞 Bizi Ara
-        </a>
+        style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 14px;">
+        <a href="tel:+905394325678" class="action-button phone-btn">📞 Bizi Ara</a>
+
         <a href="https://wa.me/905394325678?text=Merhaba,%20alt%C4%B1n%20fiyatlar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-            target="_blank"
-            style="display: flex; align-items: center; justify-content: center; background-color: #25D366; color: white; padding: 14px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 3px 8px rgba(0,0,0,0.25); min-width: 180px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
-                style="height: 24px; margin-right: 10px;">
-            WhatsApp ile Yaz
+            target="_blank" class="action-button whatsapp-btn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">WhatsApp ile Yaz
         </a>
-        <a href="https://www.instagram.com/sezginkuyumculuk_23/" target="_blank"
-            style="display: flex; align-items: center; justify-content: center; background-color: #e1306c; color: white; padding: 14px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 3px 8px rgba(0,0,0,0.25); min-width: 180px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"
-                style="height: 24px; margin-right: 10px;">
-            Instagram
+
+        <a href="https://www.instagram.com/sezginkuyumculuk_23/" target="_blank" class="action-button instagram-btn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">Instagram
         </a>
     </div>
 
