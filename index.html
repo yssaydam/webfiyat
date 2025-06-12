@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Altın Fiyatları</title>
+    <title>SEZGİN KUYUMCULUK</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
@@ -123,6 +123,23 @@
 </head>
 
 <body>
+    <div id="bildirimKutusu" style="
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fef3c7;
+        color: #333;
+        padding: 1rem 2rem;
+        border: 2px solid #facc15;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+    "></div>
     <div class="container">
         <header>
             <h1>SEZGİN Kuyumculuk</h1>
@@ -179,6 +196,19 @@
             });
         }
 
+        function gosterBildirim(metin) {
+            const kutu = document.getElementById("bildirimKutusu");
+            kutu.innerHTML = metin;
+            kutu.style.display = "block";
+            kutu.style.opacity = 1;
+            setTimeout(() => {
+                kutu.style.opacity = 0;
+                setTimeout(() => {
+                    kutu.style.display = "none";
+                }, 500);
+            }, 5000);
+        }
+
         async function veriYukle() {
             try {
                 const res = await fetch('fiyatlar.json', { cache: "no-store" });
@@ -198,6 +228,25 @@
                 const veriStr = JSON.stringify(yeniVeri);
                 if (sonVeri && veriStr !== JSON.stringify(sonVeri)) {
                     guncelleTablo(yeniVeri);
+
+                    // Bildirimleri oluştur
+                    let bildirimler = [];
+                    Object.entries(yeniVeri).forEach(([tur, fiyat]) => {
+                        const onceki = sonVeri?.[tur];
+                        if (onceki && fiyat?.satış && onceki?.satış) {
+                            const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                            const eski = parseFloat(onceki.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                            if (!isNaN(yeni) && !isNaN(eski) && yeni !== eski) {
+                                const fark = yeni > eski ? "🔼" : "🔽";
+                                bildirimler.push(`${tur} ${eski.toFixed(2)} → ${yeni.toFixed(2)} ${fark}`);
+                            }
+                        }
+                    });
+
+                    if (bildirimler.length > 0) {
+                        gosterBildirim("📢 " + bildirimler.join(" | "));
+                    }
+
                     sonVeri = yeniVeri;
                 }
             } catch (e) {
