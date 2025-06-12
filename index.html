@@ -24,6 +24,10 @@
 </head>
 
 <body>
+    <header>
+        <h1>SEZGİN Kuyumculuk</h1>
+        <p id="guncellemeZamani" style="font-size: 0.9rem; color: #555;"></p>
+    </header>
     <h1>Güncel Altın Fiyatları</h1>
     <table id="fiyatTablosu">
         <thead>
@@ -40,6 +44,9 @@
         fetch('fiyatlar.json')
             .then(res => res.json())
             .then(data => {
+                document.getElementById("guncellemeZamani").textContent =
+                    "Son Güncelleme: " + new Date().toLocaleString("tr-TR");
+
                 const tbody = document.querySelector('#fiyatTablosu tbody');
                 Object.entries(data).forEach(([tur, fiyat]) => {
                     const satir = document.createElement('tr');
