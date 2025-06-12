@@ -142,41 +142,70 @@
     </div>
 
     <script>
-        fetch('fiyatlar.json')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById("guncellemeZamani").textContent =
-                    "Son Güncelleme: " + new Date().toLocaleString("tr-TR");
+        let sonVeri = null;
 
-                const tbody = document.querySelector('#fiyatTablosu tbody');
-                Object.entries(data).forEach(([tur, fiyat]) => {
-                    const satir = document.createElement('tr');
-                    satir.innerHTML = `<td data-label="Tür">${tur}</td><td data-label="Alış">${fiyat.alış}</td><td data-label="Satış">${fiyat.satış}</td>`;
-                    tbody.appendChild(satir);
-                });
-            })
-            .catch(err => {
+        function guncelleTablo(data) {
+            document.getElementById("guncellemeZamani").textContent =
+                "Son Güncelleme: " + new Date().toLocaleString("tr-TR");
+
+            const tbody = document.querySelector('#fiyatTablosu tbody');
+            tbody.innerHTML = ""; // eski satırları temizle
+
+            Object.entries(data).forEach(([tur, fiyat]) => {
+                const satir = document.createElement('tr');
+
+                // Önceki değer varsa farkı hesapla
+                let oncekiFiyat = sonVeri ? sonVeri[tur] : null;
+                let fark = "";
+                if (oncekiFiyat && fiyat.satış && oncekiFiyat.satış) {
+                    const yeni = parseFloat(fiyat.satış.replace(".", "").replace(",", "."));
+                    const eski = parseFloat(oncekiFiyat.satış.replace(".", "").replace(",", "."));
+                    if (yeni > eski) {
+                        fark = " 🔼";
+                        satir.style.color = "green";
+                    } else if (yeni < eski) {
+                        fark = " 🔽";
+                        satir.style.color = "red";
+                    }
+                }
+
+                satir.innerHTML = `
+                    <td data-label="Tür">${tur}</td>
+                    <td data-label="Alış">${fiyat.alış}</td>
+                    <td data-label="Satış">${fiyat.satış}${fark}</td>
+                `;
+                tbody.appendChild(satir);
+            });
+        }
+
+        async function veriYukle() {
+            try {
+                const res = await fetch('fiyatlar.json', { cache: "no-store" });
+                const yeniVeri = await res.json();
+                guncelleTablo(yeniVeri);
+                sonVeri = yeniVeri;
+            } catch (err) {
                 document.body.innerHTML += "<p>Veri alınamadı.</p>";
                 console.error(err);
-            });
-
-        let sonVeri = null;
+            }
+        }
 
         async function kontrolEtVeYenile() {
             try {
                 const res = await fetch('fiyatlar.json', { cache: "no-store" });
                 const yeniVeri = await res.json();
                 const veriStr = JSON.stringify(yeniVeri);
-                if (sonVeri && veriStr !== sonVeri) {
-                    location.reload();
+                if (sonVeri && veriStr !== JSON.stringify(sonVeri)) {
+                    guncelleTablo(yeniVeri);
+                    sonVeri = yeniVeri;
                 }
-                sonVeri = veriStr;
             } catch (e) {
                 console.error("Veri kontrol edilemedi", e);
             }
         }
 
-        setInterval(kontrolEtVeYenile, 10000); // 10 saniyede bir kontrol et
+        veriYukle(); // Sayfa ilk açıldığında yükle
+        setInterval(kontrolEtVeYenile, 10000); // Her 10 saniyede bir kontrol et
     </script>
 </body>
 
