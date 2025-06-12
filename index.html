@@ -6,39 +6,76 @@
     <title>Altın Fiyatları</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #fff;
             padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #c89e50;
+            margin-bottom: 1rem;
         }
 
         table {
-            border-collapse: collapse;
             width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
         }
 
-        td,
-        th {
+        th,
+        td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        #guncellemeZamani {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #777;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>SEZGİN Kuyumculuk</h1>
-    </header>
-    <h1>Güncel Altın Fiyatları</h1>
-    <table id="fiyatTablosu">
-        <thead>
-            <tr>
-                <th>Tür</th>
-                <th>Alış</th>
-                <th>Satış</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <p id="guncellemeZamani" style="font-size: 0.9rem; color: #555; margin-top: 1rem;"></p>
+    <div class="container">
+        <header>
+            <h1>SEZGİN Kuyumculuk</h1>
+        </header>
+        <h1>Güncel Altın Fiyatları</h1>
+        <table id="fiyatTablosu">
+            <thead>
+                <tr>
+                    <th>Tür</th>
+                    <th>Alış</th>
+                    <th>Satış</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <p id="guncellemeZamani"></p>
+    </div>
 
     <script>
         fetch('fiyatlar.json')
