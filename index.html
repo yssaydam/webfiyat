@@ -301,19 +301,7 @@
         veriYukle(); // Sayfa ilk açıldığında yükle
         setInterval(kontrolEtVeYenile, 10000); // Her 10 saniyede bir kontrol et
 
-        function hesaplaAltin() {
-            const gram = parseFloat(document.getElementById("gramInput").value);
-            const altin = sonVeri?.["24 AYAR"]?.satış;
-            if (!isNaN(gram) && altin) {
-                const fiyat = parseFloat(altin.replace(/[^\d,]/g, '').replace(",", "."));
-                if (!isNaN(fiyat)) {
-                    const toplam = (gram * fiyat).toFixed(2).replace(".", ",");
-                    document.getElementById("hesapSonuc").textContent = `${gram} gr 24 Ayar Altın ≈ ${toplam} TL`;
-                    return;
-                }
-            }
-            document.getElementById("hesapSonuc").textContent = "Lütfen geçerli bir değer girin.";
-        }
+
     </script>
     <div
         style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;">
@@ -326,7 +314,7 @@
             style="display: flex; align-items: center; justify-content: center; background-color: #c89e50; color: white; padding: 14px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 3px 8px rgba(0,0,0,0.25); min-width: 180px;">
             📞 Bizi Ara
         </a>
-        <a href="https://www.instagram.com/sezginkuyumculuk23/" target="_blank"
+        <a href="https://www.instagram.com/sezginkuyumculuk_23/" target="_blank"
             style="display: flex; align-items: center; justify-content: center; background-color: #e1306c; color: white; padding: 14px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 3px 8px rgba(0,0,0,0.25); min-width: 180px;">
             📷 Instagram
         </a>
