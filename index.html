@@ -262,22 +262,28 @@
                 if (sonVeri && veriStr !== JSON.stringify(sonVeri)) {
                     guncelleTablo(yeniVeri);
 
-                    // Bildirimleri oluştur
-                    let bildirimler = [];
+                    // Bildirimleri oluştur (yeni sadeleştirilmiş sürüm)
+                    let artan = false;
+                    let azalan = false;
+
                     Object.entries(yeniVeri).forEach(([tur, fiyat]) => {
                         const onceki = sonVeri?.[tur];
                         if (onceki && fiyat?.satış && onceki?.satış) {
                             const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
                             const eski = parseFloat(onceki.satış.replace(/[^\d,]/g, '').replace(",", "."));
-                            if (!isNaN(yeni) && !isNaN(eski) && yeni !== eski) {
-                                const fark = yeni > eski ? "🔼" : "🔽";
-                                bildirimler.push(`${tur} ${eski.toFixed(2)} → ${yeni.toFixed(2)} ${fark}`);
+                            if (!isNaN(yeni) && !isNaN(eski)) {
+                                if (yeni > eski) artan = true;
+                                if (yeni < eski) azalan = true;
                             }
                         }
                     });
 
-                    if (bildirimler.length > 0) {
-                        gosterBildirim("📢 " + bildirimler.join(" | "));
+                    if (artan || azalan) {
+                        let mesaj = "📢 Fiyatlar ";
+                        if (artan && !azalan) mesaj += "yükseldi 🔼";
+                        else if (!artan && azalan) mesaj += "düştü 🔽";
+                        else mesaj += "güncellendi 🔄";
+                        gosterBildirim(mesaj);
                     }
 
                     sonVeri = yeniVeri;
