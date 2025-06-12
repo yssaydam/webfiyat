@@ -182,6 +182,17 @@
             </thead>
             <tbody></tbody>
         </table>
+        <div style="text-align: center; margin-top: 2rem;">
+            <h2>Altın Hesaplayıcı</h2>
+            <label for="gramInput" style="font-weight: 600;">Gram (24 Ayar):</label>
+            <input id="gramInput" type="number" step="0.01" min="0" placeholder="Örn: 10"
+                style="padding: 0.5rem; margin: 0 0.5rem; width: 100px; font-size: 1rem;">
+            <button onclick="hesaplaAltin()"
+                style="padding: 0.5rem 1rem; font-size: 1rem; background-color: #c89e50; color: white; border: none; border-radius: 6px; font-weight: bold;">
+                Hesapla
+            </button>
+            <div id="hesapSonuc" style="margin-top: 1rem; font-size: 1.2rem; color: #333; font-weight: 600;"></div>
+        </div>
     </div>
 
     <script>
@@ -289,7 +300,20 @@
 
         veriYukle(); // Sayfa ilk açıldığında yükle
         setInterval(kontrolEtVeYenile, 10000); // Her 10 saniyede bir kontrol et
-    </script>
+
+        function hesaplaAltin() {
+            const gram = parseFloat(document.getElementById("gramInput").value);
+            const altin = sonVeri?.["24 AYAR"]?.satış;
+            if (!isNaN(gram) && altin) {
+                const fiyat = parseFloat(altin.replace(/[^\d,]/g, '').replace(",", "."));
+                if (!isNaN(fiyat)) {
+                    const toplam = (gram * fiyat).toFixed(2).replace(".", ",");
+                    document.getElementById("hesapSonuc").textContent = `${gram} gr 24 Ayar Altın ≈ ${toplam} TL`;
+                    return;
+                }
+            }
+            document.getElementById("hesapSonuc").textContent = "Lütfen geçerli bir değer girin.";
+        }
     </script>
     <div
         style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;">
@@ -301,6 +325,10 @@
         <a href="tel:+905394325678"
             style="display: flex; align-items: center; justify-content: center; background-color: #c89e50; color: white; padding: 14px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 3px 8px rgba(0,0,0,0.25); min-width: 180px;">
             📞 Bizi Ara
+        </a>
+        <a href="https://www.instagram.com/sezginkuyumculuk23/" target="_blank"
+            style="display: flex; align-items: center; justify-content: center; background-color: #e1306c; color: white; padding: 14px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 3px 8px rgba(0,0,0,0.25); min-width: 180px;">
+            📷 Instagram
         </a>
     </div>
 
