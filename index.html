@@ -188,6 +188,7 @@
         let sonVeri = null;
 
         function guncelleTablo(data) {
+            const guncellemeZamani = data.guncellemeZamani;
             delete data.guncellemeZamani;
             const tbody = document.querySelector('#fiyatTablosu tbody');
             tbody.innerHTML = ""; // eski satırları temizle
@@ -219,9 +220,9 @@
                 tbody.appendChild(satir);
             });
 
-            if (data?.guncellemeZamani) {
+            if (guncellemeZamani) {
                 document.getElementById("guncellemeZamani").textContent =
-                    "Son Güncelleme: " + data.guncellemeZamani;
+                    "Son Güncelleme: " + guncellemeZamani;
             } else {
                 document.getElementById("guncellemeZamani").textContent =
                     "Son Güncelleme: Bilinmiyor";
