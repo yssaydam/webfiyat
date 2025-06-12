@@ -218,6 +218,14 @@
                 `;
                 tbody.appendChild(satir);
             });
+
+            if (data?.guncellemeZamani) {
+                document.getElementById("guncellemeZamani").textContent =
+                    "Son Güncelleme: " + data.guncellemeZamani;
+            } else {
+                document.getElementById("guncellemeZamani").textContent =
+                    "Son Güncelleme: Bilinmiyor";
+            }
         }
 
         function gosterBildirim(metin) {
@@ -294,8 +302,9 @@
             📞 Bizi Ara
         </a>
     </div>
-    <p id="guncellemeZamani"
-        style="text-align:center; margin: 3rem 0 1rem 0; font-size: 1.1rem; color: #555; font-weight: 500;"></p>
+
 </body>
+<p id="guncellemeZamani"
+    style="text-align:center; margin: 3rem 0 1rem 0; font-size: 1.1rem; color: #555; font-weight: 500;"></p>
 
 </html>
