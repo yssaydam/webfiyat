@@ -462,6 +462,19 @@
         <p style="margin-top: 1rem;"><a href="https://maps.app.goo.gl/D7LBmMmZHg56ThEy8" target="_blank"
                 style="text-decoration:none; color:#007bff;">📌 Haritada Göster</a></p>
     </div>
+    <script>
+        fetch("analytics.json")
+            .then(res => res.json())
+            .then(data => {
+                const ziyaretciP = document.createElement("p");
+                ziyaretciP.textContent = `👥 Bugünkü Ziyaretçi Sayısı: ${data.ziyaretci}`;
+                ziyaretciP.style.textAlign = "center";
+                ziyaretciP.style.fontSize = "1.05rem";
+                ziyaretciP.style.color = "#666";
+                ziyaretciP.style.marginBottom = "2rem";
+                document.body.appendChild(ziyaretciP);
+            });
+    </script>
 </body>
 
 </html>
