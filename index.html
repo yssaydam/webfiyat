@@ -5,6 +5,40 @@
     <meta charset="UTF-8">
     <title>SEZGİN KUYUMCULUK</title>
     <style>
+        body.dark-mode {
+            background: #111;
+            color: #eee;
+        }
+
+        body.dark-mode .container {
+            background: #1e1e1e;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
+        }
+
+        body.dark-mode table td {
+            background: #2a2a2a;
+            color: #eee;
+            border-color: #444;
+        }
+
+        body.dark-mode table th {
+            background-color: #333;
+            color: #ccc;
+        }
+
+        body.dark-mode .action-button {
+            box-shadow: 0 6px 12px rgba(255, 255, 255, 0.15);
+        }
+
+        body.dark-mode .action-button:hover {
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.25);
+        }
+
+        body.dark-mode #guncellemeZamani,
+        body.dark-mode #mesaiDisiUyari {
+            color: #ccc;
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
         body {
@@ -205,9 +239,16 @@
             }
         }
     </style>
-    <!-- Mobile Home Screen Shortcut & Icons -->
-    <!-- Apple Touch Startup Images -->
-    </style>
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description"
+        content="Sezgin Kuyumculuk - Elazığ'ın güvenilir altın ve döviz fiyatları. Güncel verilerle altın fiyatlarını takip edin.">
+    <meta name="keywords" content="altın fiyatları, Elazığ kuyumcu, çeyrek altın, gram altın, döviz kuru">
+    <meta property="og:title" content="Sezgin Kuyumculuk">
+    <meta property="og:description"
+        content="Elazığ'da güncel altın fiyatları ve döviz kurları. Güvenilir, şeffaf, hızlı.">
+    <meta property="og:image" content="favicon/web-app-manifest-512x512.png">
+    <meta property="og:url" content="https://yssaydam.github.io/altin-fiyatlari/webfiyat/">
+    <meta name="twitter:card" content="summary_large_image">
     <!-- Mobile Home Screen Shortcut & Icons -->
     <!-- Apple Touch Startup Images -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -239,6 +280,8 @@
 <!-- Removed duplicate/old manifest and head tags -->
 
 <body>
+    <button id="darkModeToggle"
+        style="position: fixed; top: 16px; right: 16px; z-index: 9999; padding: 10px 16px; background-color: #333; color: #fff; border: none; border-radius: 8px; cursor: pointer;">🌓</button>
     <div id="bildirimKutusu" style="
         display: none;
         position: fixed;
@@ -266,6 +309,10 @@
         <header>
             <h1>SEZGİN Kuyumculuk</h1>
         </header>
+        <div id="dovizKutusu"
+            style="text-align:center; margin-bottom:1.5rem; font-size: 1.1rem; font-weight: 500; color: #444;">
+            💱 Güncel Döviz Kurları: USD: <span id="usd">...</span> ₺ | EUR: <span id="eur">...</span> ₺
+        </div>
         <h2>Güncel Altın Fiyatları</h2>
         <table id="fiyatTablosu">
             <thead>
@@ -304,31 +351,40 @@
             const tbody = document.querySelector('#fiyatTablosu tbody');
             tbody.innerHTML = "";
 
+            // Güncel döviz kutusunu güncelle
+            if (data["Dolar"] && data["Dolar"].satış) {
+                document.getElementById("usd").textContent = data["Dolar"].satış;
+            }
+            if (data["Euro"] && data["Euro"].satış) {
+                document.getElementById("eur").textContent = data["Euro"].satış;
+            }
+
             Object.entries(data).forEach(([tur, fiyat]) => {
-                const satir = document.createElement('tr');
+                // Sadece fiyat nesnesi olanları (ör: guncellemeZamani hariç) ekle
+                if (typeof fiyat === "object" && fiyat !== null && "alış" in fiyat && "satış" in fiyat) {
+                    const satir = document.createElement('tr');
 
-
-                let oncekiFiyat = sonVeri ? sonVeri[tur] : null;
-                let fark = "";
-                let okIsareti = "";
-                if (oncekiFiyat && fiyat.satış && oncekiFiyat.satış) {
-                    const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
-                    const eski = parseFloat(oncekiFiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
-                    if (!isNaN(yeni) && !isNaN(eski)) {
-                        if (yeni > eski) {
-                            fark = " <span class='fark-ok green-ok'>↑</span>";
-                        } else if (yeni < eski) {
-                            fark = " <span class='fark-ok red-ok'>↓</span>";
+                    let oncekiFiyat = sonVeri ? sonVeri[tur] : null;
+                    let fark = "";
+                    if (oncekiFiyat && fiyat.satış && oncekiFiyat.satış) {
+                        const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                        const eski = parseFloat(oncekiFiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                        if (!isNaN(yeni) && !isNaN(eski)) {
+                            if (yeni > eski) {
+                                fark = " <span class='fark-ok green-ok'>↑</span>";
+                            } else if (yeni < eski) {
+                                fark = " <span class='fark-ok red-ok'>↓</span>";
+                            }
                         }
                     }
-                }
 
-                satir.innerHTML = `
-                    <td data-label="Tür">${tur}</td>
-                    <td data-label="Alış">${fiyat.alış}</td>
-                    <td data-label="Satış">${fiyat.satış}${fark}</td>
-                `;
-                tbody.appendChild(satir);
+                    satir.innerHTML = `
+                        <td data-label="Tür">${tur}</td>
+                        <td data-label="Alış">${fiyat.alış}</td>
+                        <td data-label="Satış">${fiyat.satış}${fark}</td>
+                    `;
+                    tbody.appendChild(satir);
+                }
             });
 
             if (guncellemeZamani) {
@@ -405,9 +461,19 @@
         }
 
         kontrolMesaiSaati();
+        // Artık döviz kurları fiyatlar.json içinden alınacak
         veriYukle();
         setInterval(kontrolEtVeYenile, 10000);
 
+        // Karanlık mod kodu
+        const toggleBtn = document.getElementById("darkModeToggle");
+        toggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "on" : "off");
+        });
+        if (localStorage.getItem("darkMode") === "on") {
+            document.body.classList.add("dark-mode");
+        }
     </script>
     <nav aria-label="Hızlı iletişim"
         style="position: fixed; bottom: 30px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 14px;">
