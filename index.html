@@ -192,6 +192,21 @@
             margin-right: 12px;
         }
 
+        /* Mesai dışı uyarı animasyonu */
+        @keyframes pulseUyari {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
         @media (max-width: 600px) {
             .action-button {
                 padding: 18px 28px;
@@ -264,9 +279,19 @@
         transition: opacity 0.5s ease;
     "></div>
 
-    <div id="mesaiDisiUyari"
-        style="display:none;text-align:center;background:#fff3cd;color:#856404;padding:1rem 2rem;border-radius:12px;margin:2rem auto;max-width:900px;font-size:1.1rem;font-weight:500;border:1px solid #ffeeba;">
-        Şu anda mesai saatleri dışında! Fiyatlar bilgilendirme amaçlıdır ve güncellenmemektedir.
+    <div id="mesaiDisiUyari" style="display:none; text-align:center; margin:2rem auto; max-width:900px;">
+        <div style="
+            background: linear-gradient(135deg, #fff3cd, #ffeeba);
+            border: 2px solid #f1c40f;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            animation: pulseUyari 2s infinite;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #856404;">
+            ⚠️ Şu anda mesai saatleri dışında! Fiyatlar bilgilendirme amaçlıdır ve güncellenmemektedir.
+        </div>
     </div>
 
     <div class="container">
