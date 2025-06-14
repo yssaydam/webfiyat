@@ -5,40 +5,6 @@
     <meta charset="UTF-8">
     <title>SEZGİN KUYUMCULUK</title>
     <style>
-        body.dark-mode {
-            background: #111;
-            color: #eee;
-        }
-
-        body.dark-mode .container {
-            background: #1e1e1e;
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
-        }
-
-        body.dark-mode table td {
-            background: #2a2a2a;
-            color: #eee;
-            border-color: #444;
-        }
-
-        body.dark-mode table th {
-            background-color: #333;
-            color: #ccc;
-        }
-
-        body.dark-mode .action-button {
-            box-shadow: 0 6px 12px rgba(255, 255, 255, 0.15);
-        }
-
-        body.dark-mode .action-button:hover {
-            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.25);
-        }
-
-        body.dark-mode #guncellemeZamani,
-        body.dark-mode #mesaiDisiUyari {
-            color: #ccc;
-        }
-
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
         body {
@@ -280,8 +246,6 @@
 <!-- Removed duplicate/old manifest and head tags -->
 
 <body>
-    <button id="darkModeToggle"
-        style="position: fixed; top: 16px; right: 16px; z-index: 9999; padding: 10px 16px; background-color: #333; color: #fff; border: none; border-radius: 8px; cursor: pointer;">🌓</button>
     <div id="bildirimKutusu" style="
         display: none;
         position: fixed;
@@ -483,15 +447,6 @@
         veriYukle();
         setInterval(kontrolEtVeYenile, 10000);
 
-        // Karanlık mod kodu
-        const toggleBtn = document.getElementById("darkModeToggle");
-        toggleBtn.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "on" : "off");
-        });
-        if (localStorage.getItem("darkMode") === "on") {
-            document.body.classList.add("dark-mode");
-        }
     </script>
     <nav aria-label="Hızlı iletişim"
         style="position: fixed; bottom: 30px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 14px;">
