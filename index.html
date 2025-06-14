@@ -192,7 +192,6 @@
             margin-right: 12px;
         }
 
-        /* Mobile action buttons larger and more accessible */
         @media (max-width: 600px) {
             .action-button {
                 padding: 18px 28px;
@@ -226,6 +225,12 @@
         z-index: 9999;
         transition: opacity 0.5s ease;
     "></div>
+
+    <div id="mesaiDisiUyari"
+        style="display:none;text-align:center;background:#fff3cd;color:#856404;padding:1rem 2rem;border-radius:12px;margin:2rem auto;max-width:900px;font-size:1.1rem;font-weight:500;border:1px solid #ffeeba;">
+        Şu anda mesai saatleri dışında! Fiyatlar bilgilendirme amaçlıdır ve güncellenmemektedir.
+    </div>
+
     <div class="container">
         <header>
             <h1>SEZGİN Kuyumculuk</h1>
@@ -246,18 +251,32 @@
     </div>
 
     <script defer>
+        function kontrolMesaiSaati() {
+            const simdi = new Date();
+            const gun = simdi.getDay();
+            const saat = simdi.getHours();
+
+            const mesaiGunu = gun >= 1 && gun <= 6;
+            const mesaiSaati = saat >= 9 && saat < 19;
+
+            const mesaiIci = mesaiGunu && mesaiSaati;
+
+            const uyariDiv = document.getElementById("mesaiDisiUyari");
+            uyariDiv.style.display = mesaiIci ? "none" : "block";
+        }
+
         let sonVeri = null;
 
         function guncelleTablo(data) {
             const guncellemeZamani = data.guncellemeZamani;
             delete data.guncellemeZamani;
             const tbody = document.querySelector('#fiyatTablosu tbody');
-            tbody.innerHTML = ""; // eski satırları temizle
+            tbody.innerHTML = "";
 
             Object.entries(data).forEach(([tur, fiyat]) => {
                 const satir = document.createElement('tr');
 
-                // Önceki değer varsa farkı hesapla
+
                 let oncekiFiyat = sonVeri ? sonVeri[tur] : null;
                 let fark = "";
                 let okIsareti = "";
@@ -354,9 +373,9 @@
             }
         }
 
-        veriYukle(); // Sayfa ilk açıldığında yükle
-        setInterval(kontrolEtVeYenile, 10000); // Her 10 saniyede bir kontrol et
-
+        kontrolMesaiSaati();
+        veriYukle();
+        setInterval(kontrolEtVeYenile, 10000);
 
     </script>
     <div
