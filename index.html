@@ -309,10 +309,7 @@
         <header>
             <h1>SEZGİN Kuyumculuk</h1>
         </header>
-        <div id="dovizKutusu"
-            style="text-align:center; margin-bottom:1.5rem; font-size: 1.1rem; font-weight: 500; color: #444;">
-            💱 Güncel Döviz Kurları: USD: <span id="usd">...</span> ₺ | EUR: <span id="eur">...</span> ₺
-        </div>
+
         <h2>Güncel Altın Fiyatları</h2>
         <table id="fiyatTablosu">
             <thead>
@@ -386,6 +383,27 @@
                     tbody.appendChild(satir);
                 }
             });
+
+            // Dolar ve Euro tabloya manuel olarak en alta ekleniyor
+            if (data["Dolar"]) {
+                const satir = document.createElement('tr');
+                satir.innerHTML = `
+                    <td data-label="Tür">Dolar</td>
+                    <td data-label="Alış">${data["Dolar"].alış}</td>
+                    <td data-label="Satış">${data["Dolar"].satış}</td>
+                `;
+                tbody.appendChild(satir);
+            }
+
+            if (data["Euro"]) {
+                const satir = document.createElement('tr');
+                satir.innerHTML = `
+                    <td data-label="Tür">Euro</td>
+                    <td data-label="Alış">${data["Euro"].alış}</td>
+                    <td data-label="Satış">${data["Euro"].satış}</td>
+                `;
+                tbody.appendChild(satir);
+            }
 
             if (guncellemeZamani) {
                 document.getElementById("guncellemeZamani").textContent =
