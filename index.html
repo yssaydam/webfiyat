@@ -101,6 +101,7 @@
                 text-align: right;
                 padding-left: 50%;
                 position: relative;
+                font-size: 1.7rem;
             }
 
             td::before {
@@ -117,6 +118,11 @@
 
             th {
                 display: none;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
             }
         }
 
@@ -235,9 +241,11 @@
             </thead>
             <tbody></tbody>
         </table>
+        <p id="guncellemeZamani"
+            style="text-align:center; margin: 3rem 0 1rem 0; font-size: 1.1rem; color: #555; font-weight: 500;"></p>
     </div>
 
-    <script>
+    <script defer>
         let sonVeri = null;
 
         function guncelleTablo(data) {
@@ -300,9 +308,11 @@
                 const res = await fetch('fiyatlar.json', { cache: "no-store" });
                 const yeniVeri = await res.json();
                 guncelleTablo(yeniVeri);
-                sonVeri = yeniVeri;
+                const veriClone = { ...yeniVeri };
+                delete veriClone.guncellemeZamani;
+                sonVeri = veriClone;
             } catch (err) {
-                document.body.innerHTML += "<p>Veri alınamadı.</p>";
+                gosterBildirim("Veri alınamadı.");
                 console.error(err);
             }
         }
@@ -311,8 +321,9 @@
             try {
                 const res = await fetch('fiyatlar.json', { cache: "no-store" });
                 const yeniVeri = await res.json();
-                const veriStr = JSON.stringify(yeniVeri);
-                if (sonVeri && veriStr !== JSON.stringify(sonVeri)) {
+                const veriClone = { ...yeniVeri };
+                delete veriClone.guncellemeZamani;
+                if (sonVeri && JSON.stringify(veriClone) !== JSON.stringify(sonVeri)) {
                     guncelleTablo(yeniVeri);
 
                     // Bildirimleri oluştur (yeni sadeleştirilmiş sürüm)
@@ -336,7 +347,7 @@
                         gosterBildirim(mesaj);
                     }
 
-                    sonVeri = yeniVeri;
+                    sonVeri = veriClone;
                 }
             } catch (e) {
                 console.error("Veri kontrol edilemedi", e);
@@ -363,8 +374,6 @@
     </div>
 
 </body>
-<p id="guncellemeZamani"
-    style="text-align:center; margin: 3rem 0 1rem 0; font-size: 1.1rem; color: #555; font-weight: 500;"></p>
 <p style="text-align:center; font-size: 0.95rem; color: #777; max-width: 700px; margin: 0 auto 2rem auto;">
     Fiyatlar sürekli değişkenlik gösterebilir ve yalnızca bilgilendirme amaçlıdır. Kesin ve güncel fiyat bilgisi için
     lütfen bizimle iletişime geçin.
