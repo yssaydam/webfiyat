@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SEZGİN KUYUMCULUK</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: linear-gradient(to bottom, #fefefe, #f3e9dc);
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #c89e50;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            color: #555;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        th {
+            background-color: #fafafa;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            color: #444;
+            padding: 16px;
+        }
+
+        td {
+            background: #fff;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            font-size: 2.1rem;
+            font-weight: 700;
+        }
+
+        tr {
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        tr:hover td {
+            background: #fef6e4;
+            transition: background 0.3s ease;
+        }
+
+        #guncellemeZamani {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            tr {
+                margin-bottom: 1rem;
+            }
+
+            td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+                font-size: 1.7rem;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 1rem;
+                font-weight: bold;
+                text-align: left;
+                color: #999;
+                font-size: 1.3rem;
+            }
+
+            th {
+                display: none;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        .fark-ok {
+            font-size: 2rem;
+            animation: fadeOut 10s forwards;
+        }
+
+        .green-ok {
+            color: green;
+        }
+
+        .red-ok {
+            color: red;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            min-width: 220px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+        }
+
+        .phone-btn {
+            background-color: #c89e50;
+            color: white;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .instagram-btn {
+            background-color: #e1306c;
+            color: white;
+        }
+
+        .action-button img {
+            height: 28px;
+            margin-right: 12px;
+        }
+
+        /* Mesai dışı uyarı animasyonu */
+        @keyframes pulseUyari {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .action-button {
+                padding: 18px 28px;
+                font-size: 1.4rem;
+                min-width: 250px;
+            }
+
+            .action-button img {
+                height: 32px;
+                margin-right: 14px;
+            }
+        }
+    </style>
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description"
+        content="Sezgin Kuyumculuk - Elazığ'ın güvenilir altın ve döviz fiyatları. Güncel verilerle altın fiyatlarını takip edin.">
+    <meta name="keywords" content="altın fiyatları, Elazığ kuyumcu, çeyrek altın, gram altın, döviz kuru">
+    <meta property="og:title" content="Sezgin Kuyumculuk">
+    <meta property="og:description"
+        content="Elazığ'da güncel altın fiyatları ve döviz kurları. Güvenilir, şeffaf, hızlı.">
+    <meta property="og:image" content="favicon/web-app-manifest-512x512.png">
+    <meta property="og:url" content="https://yssaydam.github.io/altin-fiyatlari/webfiyat/">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Mobile Home Screen Shortcut & Icons -->
+    <!-- Apple Touch Startup Images -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c89e50">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="SEZGİN Kuyumculuk">
+    <meta name="application-name" content="SEZGİN Kuyumculuk">
+    <!-- Additional icons for Android and Windows -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+    <meta name="msapplication-TileImage" content="favicon/favicon-96x96.png">
+    <meta name="msapplication-TileColor" content="#c89e50">
+    <meta name="theme-color" content="#c89e50">
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PKD464RSEH"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PKD464RSEH');
+</script>
+<!-- Removed duplicate/old manifest and head tags -->
+
+<body>
+    <div id="bildirimKutusu" style="
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fef3c7;
+        color: #333;
+        padding: 1rem 2rem;
+        border: 2px solid #facc15;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.2rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+    "></div>
+
+    <div id="mesaiDisiUyari" style="display:none; text-align:center; margin:2rem auto; max-width:900px;">
+        <div style="
+            background: linear-gradient(135deg, #fff3cd, #ffeeba);
+            border: 2px solid #f1c40f;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            animation: pulseUyari 2s infinite;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #856404;">
+            ⚠️ Şu anda mesai saatleri dışında! Fiyatlar bilgilendirme amaçlıdır ve güncellenmemektedir.
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>SEZGİN Kuyumculuk</h1>
+        </header>
+
+        <h2>Güncel Altın Fiyatları</h2>
+        <table id="fiyatTablosu">
+            <thead>
+                <tr>
+                    <th>Tür</th>
+                    <th>Alış</th>
+                    <th>Satış</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <p id="guncellemeZamani"
+            style="text-align:center; margin: 3rem 0 1rem 0; font-size: 1.1rem; color: #555; font-weight: 500;"></p>
+    </div>
+
+    <script defer>
+        function kontrolMesaiSaati() {
+            const simdi = new Date();
+            const gun = simdi.getDay();
+            const saat = simdi.getHours();
+
+            const mesaiGunu = gun >= 1 && gun <= 6;
+            const mesaiSaati = saat >= 9 && saat < 19;
+
+            const mesaiIci = mesaiGunu && mesaiSaati;
+
+            const uyariDiv = document.getElementById("mesaiDisiUyari");
+            uyariDiv.style.display = mesaiIci ? "none" : "block";
+        }
+
+        let sonVeri = null;
+
+        function guncelleTablo(data) {
+            const guncellemeZamani = data.guncellemeZamani;
+            delete data.guncellemeZamani;
+            const tbody = document.querySelector('#fiyatTablosu tbody');
+            tbody.innerHTML = "";
+
+            Object.entries(data).forEach(([tur, fiyat]) => {
+                if (typeof fiyat === "object" && fiyat !== null && "alış" in fiyat && "satış" in fiyat) {
+                    const satir = document.createElement('tr');
+
+                    let oncekiFiyat = sonVeri ? sonVeri[tur] : null;
+                    let fark = "";
+                    if (oncekiFiyat && fiyat.satış && oncekiFiyat.satış) {
+                        const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                        const eski = parseFloat(oncekiFiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                        if (!isNaN(yeni) && !isNaN(eski)) {
+                            if (yeni > eski) {
+                                fark = " <span class='fark-ok green-ok'>↑</span>";
+                            } else if (yeni < eski) {
+                                fark = " <span class='fark-ok red-ok'>↓</span>";
+                            }
+                        }
+                    }
+
+                    satir.innerHTML = `
+                        <td data-label="Tür">${tur}</td>
+                        <td data-label="Alış">${fiyat.alış}</td>
+                        <td data-label="Satış">${fiyat.satış}${fark}</td>
+                    `;
+                    tbody.appendChild(satir);
+                }
+            });
+
+            if (guncellemeZamani) {
+                document.getElementById("guncellemeZamani").textContent =
+                    "Son Güncelleme: " + guncellemeZamani;
+            } else {
+                document.getElementById("guncellemeZamani").textContent =
+                    "Son Güncelleme: Bilinmiyor";
+            }
+        }
+
+        function gosterBildirim(metin) {
+            const kutu = document.getElementById("bildirimKutusu");
+            kutu.innerHTML = metin;
+            kutu.style.display = "block";
+            kutu.style.opacity = 1;
+            setTimeout(() => {
+                kutu.style.opacity = 0;
+                setTimeout(() => {
+                    kutu.style.display = "none";
+                }, 500);
+            }, 5000);
+        }
+
+        async function veriYukle() {
+            try {
+                const res = await fetch('fiyatlar.json', { cache: "no-store" });
+                const yeniVeri = await res.json();
+                guncelleTablo(yeniVeri);
+                const veriClone = { ...yeniVeri };
+                delete veriClone.guncellemeZamani;
+                sonVeri = veriClone;
+            } catch (err) {
+                gosterBildirim("Veri alınamadı.");
+                console.error(err);
+            }
+        }
+
+        async function kontrolEtVeYenile() {
+            try {
+                const res = await fetch('fiyatlar.json', { cache: "no-store" });
+                const yeniVeri = await res.json();
+                const veriClone = { ...yeniVeri };
+                delete veriClone.guncellemeZamani;
+                if (sonVeri && JSON.stringify(veriClone) !== JSON.stringify(sonVeri)) {
+                    guncelleTablo(yeniVeri);
+
+                    let artan = false;
+                    let azalan = false;
+
+                    Object.entries(yeniVeri).forEach(([tur, fiyat]) => {
+                        const onceki = sonVeri?.[tur];
+                        if (onceki && fiyat?.satış && onceki?.satış) {
+                            const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                            const eski = parseFloat(onceki.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                            if (!isNaN(yeni) && !isNaN(eski)) {
+                                if (yeni > eski) artan = true;
+                                if (yeni < eski) azalan = true;
+                            }
+                        }
+                    });
+
+                    if (artan || azalan) {
+                        let mesaj = "📢 Fiyatlar güncellendi";
+                        gosterBildirim(mesaj);
+                    }
+
+                    sonVeri = veriClone;
+                }
+            } catch (e) {
+                console.error("Veri kontrol edilemedi", e);
+            }
+        }
+
+        kontrolMesaiSaati();
+        // Artık döviz kurları fiyatlar.json içinden alınacak
+        veriYukle();
+        setInterval(kontrolEtVeYenile, 10000);
+
+    </script>
+    <nav aria-label="Hızlı iletişim"
+        style="position: fixed; bottom: 30px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 14px;">
+        <a href="tel:+905394325678" class="action-button phone-btn">📞 Bizi Ara</a>
+        <a href="https://wa.me/905394325678?text=Merhaba,%20alt%C4%B1n%20fiyatlar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+            target="_blank" class="action-button whatsapp-btn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">WhatsApp ile Yaz
+        </a>
+        <a href="https://www.instagram.com/sezginkuyumculuk_23/" target="_blank" class="action-button instagram-btn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">Instagram
+        </a>
+    </nav>
+    <p
+        style="text-align:center; font-size: 0.95rem; color: #777; max-width: 700px; margin: 0 auto 2rem auto; line-height: 1.6;">
+        Fiyatlar sürekli değişkenlik gösterebilir ve yalnızca bilgilendirme amaçlıdır. Kesin ve güncel fiyat bilgisi
+        için
+        lütfen bizimle iletişime geçin.
+    </p>
+
+    <!--  
+    <div style="text-align:center; margin-top: 3rem;">
+        <h3 style="color:#c89e50; margin-bottom: 1rem;">Müşteri Yorumları</h3>
+        <div style="max-width: 700px; margin: 0 auto; font-size: 1.05rem; color: #444;">
+            <blockquote
+                style="margin-bottom: 1.5rem; background: #f8f9fa; padding: 1rem 1.5rem; border-left: 4px solid #c89e50;">
+                <strong>Ayşe K.</strong>: "İlgili ve dürüst bir işletme. Fiyatlar her zaman güncel. Tavsiye ederim!"
+            </blockquote>
+            <blockquote
+                style="margin-bottom: 1.5rem; background: #f8f9fa; padding: 1rem 1.5rem; border-left: 4px solid #c89e50;">
+                <strong>Mehmet D.</strong>: "Web sayfası çok kullanışlı. Telefonla hemen bilgi alabildim."
+            </blockquote>
+            <blockquote style="background: #f8f9fa; padding: 1rem 1.5rem; border-left: 4px solid #c89e50;">
+                <strong>Elif Y.</strong>: "Fiyatlar gerçek zamanlı ve doğru. Güvenilir bir kuyumcu."
+            </blockquote>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top: 3rem;">
+        <h3 style="color:#c89e50; margin-bottom: 1rem;">Neden Bizi Tercih Etmelisiniz?</h3>
+        <ul style="list-style: none; padding: 0; max-width: 700px; margin: 0 auto; color: #555; font-size: 1.1rem;">
+            <li style="margin-bottom: 0.5rem;">✅ Güvenilir fiyat bilgisi ve şeffaflık</li>
+            <li style="margin-bottom: 0.5rem;">✅ Yılların deneyimi ve müşteri memnuniyeti</li>
+            <li style="margin-bottom: 0.5rem;">✅ Hızlı iletişim ve anında fiyat güncellemesi</li>
+            <li style="margin-bottom: 0.5rem;">✅ Şık ve kullanıcı dostu dijital deneyim</li>
+        </ul>
+    </div>
+    -->
+    <div style="text-align:center; margin-top: 3rem; padding: 1.5rem; background: #f9f9f9; border-top: 1px solid #ddd;">
+        <h3 style="margin-bottom: 0.8rem; color: #c89e50;">İletişim & Ulaşım</h3>
+        <p style="margin: 0.2rem 0;">📍 Adres: İzzetpaşa Camii Pasajı No:98, Merkez / Elazığ</p>
+        <p style="margin: 0.2rem 0;">🕒 Çalışma Saatleri: Pazartesi - Cumartesi 08:30 - 18:30</p>
+        <p style="margin: 0.2rem 0; color: #b00;"><strong>Pazar günleri kapalıyız.</strong></p>
+        <p style="margin-top: 1rem;"><a href="https://maps.app.goo.gl/D7LBmMmZHg56ThEy8" target="_blank"
+                style="text-decoration:none; color:#007bff;">📌 Haritada Göster</a></p>
+    </div>
+    <script>
+        fetch("analytics.json")
+            .then(res => res.json())
+            .then(data => {
+                const ziyaretciP = document.createElement("p");
+                ziyaretciP.innerHTML = `
+                    👥 Aktif Kullanıcı Sayısı: <strong>${data.aktif_kullanici}</strong><br>
+                  
+                `;
+                ziyaretciP.style.textAlign = "center";
+                ziyaretciP.style.fontSize = "1.05rem";
+                ziyaretciP.style.color = "#666";
+                ziyaretciP.style.marginBottom = "2rem";
+                document.body.appendChild(ziyaretciP);
+            });
+    </script>
+</body>
+
+</html>
