@@ -495,6 +495,7 @@
         <p style="margin-top: 1rem;"><a href="https://maps.app.goo.gl/D7LBmMmZHg56ThEy8" target="_blank"
                 style="text-decoration:none; color:#007bff;">📌 Haritada Göster</a></p>
     </div>
+    </div>
     <script>
         fetch("analytics.json")
             .then(res => res.json())
@@ -510,6 +511,18 @@
                 ziyaretciP.style.marginBottom = "2rem";
                 document.body.appendChild(ziyaretciP);
             });
+    </script>
+    <script>
+        (function () {
+            function t(e) { return ["I", "J", "C", "U"].includes(e.toUpperCase()) }
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "F12" || (e.ctrlKey && e.shiftKey && t(e.key))) {
+                    e.preventDefault();
+                    alert("Yetkisiz işlem engellendi.");
+                }
+            });
+            document.addEventListener("contextmenu", function (e) { e.preventDefault() });
+        })();
     </script>
 </body>
 
