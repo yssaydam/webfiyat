@@ -499,9 +499,54 @@
     </div>
     </div>
     <script>
-        window.addEventListener("DOMContentLoaded", () => {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('✅ Service Worker kaydedildi:', reg.scope))
+                .catch(err => console.warn('❌ Service Worker hatası:', err));
+        }
+
+        // Ana ekrana ekleme butonu için tetikleyici
+        let deferredPrompt;
+        const a2hsBtn = document.createElement('button');
+        a2hsBtn.id = 'a2hsBtn';
+        a2hsBtn.textContent = '📲 Ana Ekrana Ekle';
+        a2hsBtn.style.position = 'fixed';
+        a2hsBtn.style.bottom = '20px';
+        a2hsBtn.style.left = '50%';
+        a2hsBtn.style.transform = 'translateX(-50%)';
+        a2hsBtn.style.padding = '12px 20px';
+        a2hsBtn.style.fontSize = '1rem';
+        a2hsBtn.style.border = 'none';
+        a2hsBtn.style.borderRadius = '30px';
+        a2hsBtn.style.backgroundColor = '#c89e50';
+        a2hsBtn.style.color = '#fff';
+        a2hsBtn.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+        a2hsBtn.style.zIndex = '99999';
+        a2hsBtn.style.display = 'none';
+        document.body.appendChild(a2hsBtn);
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            a2hsBtn.style.display = 'block';
+        });
+
+        a2hsBtn.addEventListener('click', () => {
+            a2hsBtn.style.display = 'none';
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('👍 Kullanıcı ana ekrana eklemeyi kabul etti');
+                } else {
+                    console.log('👎 Kullanıcı ana ekrana eklemeyi reddetti');
+                }
+                deferredPrompt = null;
+            });
+        });
+
+        if (window.matchMedia('(display-mode: standalone)').matches) {
             const kutu = document.getElementById("bildirimKutusu");
-            kutu.innerHTML = "👋 Sezgin Kuyumculuk’a hoş geldiniz!";
+            kutu.innerHTML = "📱 Uygulama modunda hoş geldiniz! Hızlı ve güvenli erişim için teşekkürler.";
             kutu.style.display = "block";
             setTimeout(() => { kutu.style.opacity = 1; }, 100);
             setTimeout(() => {
@@ -510,7 +555,7 @@
                     kutu.style.display = "none";
                 }, 500);
             }, 4000);
-        });
+        }
     </script>
     <script>
         fetch("analytics.json")
