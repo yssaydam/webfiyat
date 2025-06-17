@@ -1,34 +1,37 @@
-name: Altın Fiyat Güncelle
+name: Fiyat Güncelle
 
 on:
   schedule:
-     - cron: '*/1 * * * *' # Her dk başı çalışır
-  workflow_dispatch:      # Manuel başlatmaya da izin verir
+    - cron: '*/1 * * * *'
+  workflow_dispatch:
 
 jobs:
-  fiyat-guncelle:
+  update-prices:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Reposu klonla
-      uses: actions/checkout@v3
+      - name: Repo'yu klonla
+        uses: actions/checkout@v3
 
-    - name: Python ortamını ayarla
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.10"
+      - name: Python kurulumu
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: Bağımlılıkları yükle
-      run: pip install -r requirements.txt
+      - name: Gerekli kütüphaneleri yükle
+        run: |
+          pip install -r requirements.txt
 
-    - name: Fiyatları güncelle
-      run: python fiyat.py
+      - name: Fiyatları güncelle
+        run: |
+          python fiyat.py
 
-    - name: Git değişikliklerini yükle
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add fiyatlar.json fiyat.log fiyatlar_archive.jsonl
-        git commit -m "🔁 Otomatik fiyat güncellemesi"
-        git push
-      continue-on-error: true
+      - name: Git ayarları ve push işlemi
+        run: |
+          git config --global user.name "yssaydam"
+          git config --global user.email "yavuzselimsaydam@gmail.com"
+          git add .
+          git commit -m "🔁 Otomatik fiyat güncelleme"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
