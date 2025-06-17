@@ -2,7 +2,7 @@ name: Altın Fiyat Güncelle
 
 on:
   schedule:
-    - cron: "0 * * * *"  # Her saat başı çalışır
+     - cron: '*/1 * * * *' # Her dk başı çalışır
   workflow_dispatch:      # Manuel başlatmaya da izin verir
 
 jobs:
