@@ -143,6 +143,55 @@ tr:hover td {
     margin-right: 12px;
 }
 
+.drawer {
+    position: relative;
+    z-index: 10000;
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    background: #800000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.drawer-nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 220px;
+    height: 100%;
+    background: #fff5f5;
+    border-right: 2px solid #800000;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    padding-top: 60px;
+    transition: left 0.3s ease-in-out;
+}
+
+.drawer-nav.open {
+    left: 0;
+}
+
+.drawer-nav a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #800000;
+    font-weight: 600;
+    border-bottom: 1px solid #e1cfcf;
+}
+
+.drawer-nav a:hover {
+    background: #ffeaea;
+}
+
 /* Mesai dışı uyarı animasyonu */
 @keyframes pulseUyari {
     0% {
