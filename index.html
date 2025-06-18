@@ -570,20 +570,24 @@
         }
     </script>
     <script>
-        fetch("analytics.json")
-            .then(res => res.json())
-            .then(data => {
-                const ziyaretciP = document.createElement("p");
-                ziyaretciP.innerHTML = `
-                    👥 Aktif Kullanıcı Sayısı: <strong>${data.ziyaretci}</strong><br>
-                  
-                `;
-                ziyaretciP.style.textAlign = "center";
-                ziyaretciP.style.fontSize = "1.05rem";
-                ziyaretciP.style.color = "#666";
-                ziyaretciP.style.marginBottom = "2rem";
-                document.body.appendChild(ziyaretciP);
-            });
+        const ziyaretciP = document.createElement("p");
+        ziyaretciP.id = "ziyaretciSayisi";
+        ziyaretciP.style.textAlign = "center";
+        ziyaretciP.style.fontSize = "1.05rem";
+        ziyaretciP.style.color = "#666";
+        ziyaretciP.style.marginBottom = "2rem";
+        document.body.appendChild(ziyaretciP);
+
+        function aktifKullanicilariGuncelle() {
+            fetch("analytics.json")
+                .then(res => res.json())
+                .then(data => {
+                    ziyaretciP.innerHTML = `👥 Aktif Kullanıcı Sayısı: <strong>${data.ziyaretci}</strong><br>`;
+                });
+        }
+
+        aktifKullanicilariGuncelle();
+        setInterval(aktifKullanicilariGuncelle, 100000);
     </script>
     <script>
         (function () {
