@@ -51,9 +51,9 @@
     <div class="drawer">
         <button class="menu-toggle" onclick="toggleDrawer()">☰ Menü</button>
         <nav class="drawer-nav" id="drawerNav">
-            <a href="#">Anasayfa</a>
-            <a href="#">Fiyatlar</a>
-            <a href="#">Ürünler</a>
+            <a href="#top">Anasayfa</a>
+            <a href="#fiyatlar">Fiyatlar</a>
+            <a href="#urunler">Ürünler</a>
             <a href="#">Hakkımızda</a>
             <a href="#">İletişim</a>
             <a href="https://wa.me/905394325678" target="_blank">WhatsApp</a>
@@ -104,177 +104,183 @@
             <h1>SEZGİN Kuyumculuk</h1>
         </header>
 
-        <h2>Elazığ Güncel Altın Fiyatları</h2>
-        <table id="fiyatTablosu">
-            <thead>
-                <tr>
-                    <th>Tür</th>
-                    <th>Alış</th>
-                    <th>Satış</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <p id="guncellemeZamani"
-            style="text-align:center; margin: 3rem 0 1rem 0; font-size: 1.1rem; color: #555; font-weight: 500;"></p>
-        <section style="text-align:center; font-size:1rem; color:#666; margin-top: 2rem;">
-            <p>Elazığ'da en güncel gram altın, çeyrek altın ve bilezik fiyatlarını Sezgin Kuyumculuk üzerinden takip
-                edin. Günlük verilerle anlık bilgilendirme sunuyoruz.</p>
+        <section id="fiyatlar">
+            <h2>Elazığ Güncel Altın Fiyatları</h2>
+            <table id="fiyatTablosu">
+                <thead>
+                    <tr>
+                        <th>Tür</th>
+                        <th>Alış</th>
+                        <th>Satış</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <p id="guncellemeZamani"
+                style="text-align:center; margin: 3rem 0 1rem 0; font-size: 1.1rem; color: #555; font-weight: 500;"></p>
+            <section style="text-align:center; font-size:1rem; color:#666; margin-top: 2rem;">
+                <p>Elazığ'da en güncel gram altın, çeyrek altın ve bilezik fiyatlarını Sezgin Kuyumculuk üzerinden takip
+                    edin. Günlük verilerle anlık bilgilendirme sunuyoruz.</p>
+            </section>
         </section>
     </div>
 
+    <section id="urunler">
 
-    <script defer>
-        function kontrolMesaiSaati() {
-            const simdi = new Date();
-            const gun = simdi.getDay();
-            const saat = simdi.getHours();
 
-            const mesaiGunu = gun >= 1 && gun <= 6;
-            const mesaiSaati = saat >= 9 && saat < 19;
+        <script defer>
+            function kontrolMesaiSaati() {
+                const simdi = new Date();
+                const gun = simdi.getDay();
+                const saat = simdi.getHours();
 
-            const mesaiIci = mesaiGunu && mesaiSaati;
+                const mesaiGunu = gun >= 1 && gun <= 6;
+                const mesaiSaati = saat >= 9 && saat < 19;
 
-            const uyariDiv = document.getElementById("mesaiDisiUyari");
-            uyariDiv.style.display = mesaiIci ? "none" : "block";
-        }
+                const mesaiIci = mesaiGunu && mesaiSaati;
 
-        let sonVeri = null;
+                const uyariDiv = document.getElementById("mesaiDisiUyari");
+                uyariDiv.style.display = mesaiIci ? "none" : "block";
+            }
 
-        function guncelleTablo(data) {
-            const guncellemeZamani = data.guncellemeZamani;
-            delete data.guncellemeZamani;
-            const tbody = document.querySelector('#fiyatTablosu tbody');
-            tbody.innerHTML = "";
+            let sonVeri = null;
 
-            Object.entries(data).forEach(([tur, fiyat]) => {
-                if (typeof fiyat === "object" && fiyat !== null && "alış" in fiyat && "satış" in fiyat) {
-                    const satir = document.createElement('tr');
+            function guncelleTablo(data) {
+                const guncellemeZamani = data.guncellemeZamani;
+                delete data.guncellemeZamani;
+                const tbody = document.querySelector('#fiyatTablosu tbody');
+                tbody.innerHTML = "";
 
-                    let oncekiFiyat = sonVeri ? sonVeri[tur] : null;
-                    let fark = "";
-                    if (oncekiFiyat && fiyat.satış && oncekiFiyat.satış) {
-                        const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
-                        const eski = parseFloat(oncekiFiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
-                        if (!isNaN(yeni) && !isNaN(eski)) {
-                            if (yeni > eski) {
-                                fark = " <span class='fark-ok green-ok'>↑</span>";
-                            } else if (yeni < eski) {
-                                fark = " <span class='fark-ok red-ok'>↓</span>";
+                Object.entries(data).forEach(([tur, fiyat]) => {
+                    if (typeof fiyat === "object" && fiyat !== null && "alış" in fiyat && "satış" in fiyat) {
+                        const satir = document.createElement('tr');
+
+                        let oncekiFiyat = sonVeri ? sonVeri[tur] : null;
+                        let fark = "";
+                        if (oncekiFiyat && fiyat.satış && oncekiFiyat.satış) {
+                            const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                            const eski = parseFloat(oncekiFiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                            if (!isNaN(yeni) && !isNaN(eski)) {
+                                if (yeni > eski) {
+                                    fark = " <span class='fark-ok green-ok'>↑</span>";
+                                } else if (yeni < eski) {
+                                    fark = " <span class='fark-ok red-ok'>↓</span>";
+                                }
                             }
                         }
-                    }
 
-                    satir.innerHTML = `
+                        satir.innerHTML = `
                         <td data-label="Tür">${tur}</td>
                         <td data-label="Alış">${fiyat.alış}</td>
                         <td data-label="Satış">${fiyat.satış}${fark}</td>
                     `;
-                    tbody.appendChild(satir);
-                }
-            });
-
-            if (guncellemeZamani) {
-                document.getElementById("guncellemeZamani").textContent =
-                    "Son Güncelleme: " + guncellemeZamani;
-            } else {
-                document.getElementById("guncellemeZamani").textContent =
-                    "Son Güncelleme: Bilinmiyor";
-            }
-        }
-
-        function gosterBildirim(metin) {
-            const kutu = document.getElementById("bildirimKutusu");
-            kutu.innerHTML = metin;
-            kutu.style.display = "block";
-            setTimeout(() => {
-                kutu.style.opacity = 1;
-                kutu.style.transform = "translate(-50%, -50%) scale(1)";
-            }, 50);
-            setTimeout(() => {
-                kutu.style.opacity = 0;
-                kutu.style.transform = "translate(-50%, -50%) scale(0.95)";
-                setTimeout(() => {
-                    kutu.style.display = "none";
-                }, 600);
-            }, 5000);
-        }
-
-        async function veriYukle() {
-            try {
-                const res = await fetch('fiyatlar.json', { cache: "no-store" });
-                const yeniVeri = await res.json();
-                guncelleTablo(yeniVeri);
-                sonVeri = { ...yeniVeri };
-                delete sonVeri.guncellemeZamani;
-            } catch (err) {
-                gosterBildirim("Veri alınamadı.");
-                console.error(err);
-            }
-        }
-
-        async function kontrolEtVeYenile() {
-            try {
-                const res = await fetch('fiyatlar.json', { cache: "no-store" });
-                const yeniVeri = await res.json();
-                const veriClone = { ...yeniVeri };
-                delete veriClone.guncellemeZamani;
-                if (sonVeri && JSON.stringify(veriClone) !== JSON.stringify(sonVeri)) {
-                    guncelleTablo(yeniVeri);
-
-                    let artan = false;
-                    let azalan = false;
-
-                    Object.entries(yeniVeri).forEach(([tur, fiyat]) => {
-                        const onceki = sonVeri?.[tur];
-                        if (onceki && fiyat?.satış && onceki?.satış) {
-                            const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
-                            const eski = parseFloat(onceki.satış.replace(/[^\d,]/g, '').replace(",", "."));
-                            if (!isNaN(yeni) && !isNaN(eski)) {
-                                if (yeni > eski) artan = true;
-                                if (yeni < eski) azalan = true;
-                            }
-                        }
-                    });
-
-                    if (artan || azalan) {
-                        let mesaj = "📢 Fiyatlar güncellendi";
-                        gosterBildirim(mesaj);
+                        tbody.appendChild(satir);
                     }
+                });
 
-                    sonVeri = veriClone;
+                if (guncellemeZamani) {
+                    document.getElementById("guncellemeZamani").textContent =
+                        "Son Güncelleme: " + guncellemeZamani;
+                } else {
+                    document.getElementById("guncellemeZamani").textContent =
+                        "Son Güncelleme: Bilinmiyor";
                 }
-            } catch (e) {
-                console.error("Veri kontrol edilemedi", e);
             }
-        }
 
-        kontrolMesaiSaati();
-        // Artık döviz kurları fiyatlar.json içinden alınacak
-        veriYukle();
-        setInterval(kontrolEtVeYenile, 60000);
+            function gosterBildirim(metin) {
+                const kutu = document.getElementById("bildirimKutusu");
+                kutu.innerHTML = metin;
+                kutu.style.display = "block";
+                setTimeout(() => {
+                    kutu.style.opacity = 1;
+                    kutu.style.transform = "translate(-50%, -50%) scale(1)";
+                }, 50);
+                setTimeout(() => {
+                    kutu.style.opacity = 0;
+                    kutu.style.transform = "translate(-50%, -50%) scale(0.95)";
+                    setTimeout(() => {
+                        kutu.style.display = "none";
+                    }, 600);
+                }, 5000);
+            }
 
-    </script>
-    <nav aria-label="Hızlı iletişim"
-        style="position: fixed; bottom: 30px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 14px;">
-        <a href="tel:+905394325678" class="action-button phone-btn">📞 Bizi Ara</a>
-        <a href="https://wa.me/905394325678?text=Merhaba,%20alt%C4%B1n%20fiyatlar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
-            target="_blank" class="action-button whatsapp-btn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-                alt="Elazığ WhatsApp iletişim">WhatsApp ile Yaz
-        </a>
-        <a href="https://www.instagram.com/sezginkuyumculuk_23/" target="_blank" class="action-button instagram-btn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-                alt="Sezgin Kuyumculuk Instagram">Instagram
-        </a>
-    </nav>
-    <p
-        style="text-align:center; font-size: 0.95rem; color: #777; max-width: 700px; margin: 0 auto 2rem auto; line-height: 1.6;">
-        Fiyatlar sürekli değişkenlik gösterebilir ve yalnızca bilgilendirme amaçlıdır. Kesin ve güncel fiyat bilgisi
-        için
-        lütfen bizimle iletişime geçin.
-    </p>
+            async function veriYukle() {
+                try {
+                    const res = await fetch('fiyatlar.json', { cache: "no-store" });
+                    const yeniVeri = await res.json();
+                    guncelleTablo(yeniVeri);
+                    sonVeri = { ...yeniVeri };
+                    delete sonVeri.guncellemeZamani;
+                } catch (err) {
+                    gosterBildirim("Veri alınamadı.");
+                    console.error(err);
+                }
+            }
 
+            async function kontrolEtVeYenile() {
+                try {
+                    const res = await fetch('fiyatlar.json', { cache: "no-store" });
+                    const yeniVeri = await res.json();
+                    const veriClone = { ...yeniVeri };
+                    delete veriClone.guncellemeZamani;
+                    if (sonVeri && JSON.stringify(veriClone) !== JSON.stringify(sonVeri)) {
+                        guncelleTablo(yeniVeri);
+
+                        let artan = false;
+                        let azalan = false;
+
+                        Object.entries(yeniVeri).forEach(([tur, fiyat]) => {
+                            const onceki = sonVeri?.[tur];
+                            if (onceki && fiyat?.satış && onceki?.satış) {
+                                const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                                const eski = parseFloat(onceki.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                                if (!isNaN(yeni) && !isNaN(eski)) {
+                                    if (yeni > eski) artan = true;
+                                    if (yeni < eski) azalan = true;
+                                }
+                            }
+                        });
+
+                        if (artan || azalan) {
+                            let mesaj = "📢 Fiyatlar güncellendi";
+                            gosterBildirim(mesaj);
+                        }
+
+                        sonVeri = veriClone;
+                    }
+                } catch (e) {
+                    console.error("Veri kontrol edilemedi", e);
+                }
+            }
+
+            kontrolMesaiSaati();
+            // Artık döviz kurları fiyatlar.json içinden alınacak
+            veriYukle();
+            setInterval(kontrolEtVeYenile, 60000);
+
+        </script>
+        <nav aria-label="Hızlı iletişim"
+            style="position: fixed; bottom: 30px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 14px;">
+            <a href="tel:+905394325678" class="action-button phone-btn">📞 Bizi Ara</a>
+            <a href="https://wa.me/905394325678?text=Merhaba,%20alt%C4%B1n%20fiyatlar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+                target="_blank" class="action-button whatsapp-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                    alt="Elazığ WhatsApp iletişim">WhatsApp ile Yaz
+            </a>
+            <a href="https://www.instagram.com/sezginkuyumculuk_23/" target="_blank"
+                class="action-button instagram-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+                    alt="Sezgin Kuyumculuk Instagram">Instagram
+            </a>
+        </nav>
+        <p
+            style="text-align:center; font-size: 0.95rem; color: #777; max-width: 700px; margin: 0 auto 2rem auto; line-height: 1.6;">
+            Fiyatlar sürekli değişkenlik gösterebilir ve yalnızca bilgilendirme amaçlıdır. Kesin ve güncel fiyat bilgisi
+            için
+            lütfen bizimle iletişime geçin.
+        </p>
+
+    </section>
     <!--  
     <div style="text-align:center; margin-top: 3rem;">
         <h3 style="color:#c89e50; margin-bottom: 1rem;">Müşteri Yorumları</h3>
