@@ -401,9 +401,8 @@
                 const res = await fetch('fiyatlar.json', { cache: "no-store" });
                 const yeniVeri = await res.json();
                 guncelleTablo(yeniVeri);
-                const veriClone = { ...yeniVeri };
-                delete veriClone.guncellemeZamani;
-                sonVeri = veriClone;
+                sonVeri = { ...yeniVeri };
+                delete sonVeri.guncellemeZamani;
             } catch (err) {
                 gosterBildirim("Veri alınamadı.");
                 console.error(err);
@@ -587,7 +586,7 @@
         }
 
         aktifKullanicilariGuncelle();
-        setInterval(aktifKullanicilariGuncelle, 100000);
+        setInterval(aktifKullanicilariGuncelle, 600000); // 10 dakika
     </script>
     <script>
         (function () {
