@@ -4,222 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>SEZGİN KUYUMCULUK</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            background: linear-gradient(to bottom, #fefefe, #f3e9dc);
-            color: #333;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 3rem auto;
-            background: #fff;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            color: #c89e50;
-            text-align: center;
-            margin-bottom: 0.5rem;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            text-align: center;
-            color: #555;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 10px;
-        }
-
-        th {
-            background-color: #fafafa;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-            color: #444;
-            padding: 16px;
-        }
-
-        td {
-            background: #fff;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid #eee;
-            border-radius: 6px;
-            font-size: 2.1rem;
-            font-weight: 700;
-        }
-
-        tr {
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
-        }
-
-        tr:hover td {
-            background: #fef6e4;
-            transition: background 0.3s ease;
-        }
-
-        #guncellemeZamani {
-            text-align: center;
-            margin-top: 2rem;
-            font-size: 0.95rem;
-            color: #777;
-        }
-
-        @media (max-width: 600px) {
-
-            table,
-            thead,
-            tbody,
-            th,
-            td,
-            tr {
-                display: block;
-            }
-
-            tr {
-                margin-bottom: 1rem;
-            }
-
-            td {
-                text-align: right;
-                padding-left: 50%;
-                position: relative;
-                font-size: 1.7rem;
-            }
-
-            td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 0;
-                width: 50%;
-                padding-left: 1rem;
-                font-weight: bold;
-                text-align: left;
-                color: #999;
-                font-size: 1.3rem;
-            }
-
-            th {
-                display: none;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-        }
-
-        .fark-ok {
-            font-size: 2rem;
-            animation: fadeOut 10s forwards;
-        }
-
-        .green-ok {
-            color: green;
-        }
-
-        .red-ok {
-            color: red;
-        }
-
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0;
-            }
-        }
-
-        .action-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.3rem;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-            min-width: 220px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .action-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
-        }
-
-        .phone-btn {
-            background-color: #c89e50;
-            color: white;
-        }
-
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-        }
-
-        .instagram-btn {
-            background-color: #e1306c;
-            color: white;
-        }
-
-        .action-button img {
-            height: 28px;
-            margin-right: 12px;
-        }
-
-        /* Mesai dışı uyarı animasyonu */
-        @keyframes pulseUyari {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.02);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .action-button {
-                padding: 18px 28px;
-                font-size: 1.4rem;
-                min-width: 250px;
-            }
-
-            .action-button img {
-                height: 32px;
-                margin-right: 14px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <!-- SEO & Social Meta Tags -->
     <meta name="description"
         content="Sezgin Kuyumculuk - Elazığ'ın güvenilir altın ve döviz fiyatları. Güncel verilerle altın fiyatlarını takip edin.">
@@ -305,7 +90,7 @@
             <h1>SEZGİN Kuyumculuk</h1>
         </header>
 
-        <h2>Güncel Altın Fiyatları</h2>
+        <h2>Elazığ Güncel Altın Fiyatları - Sezgin Kuyumculuk</h2>
         <table id="fiyatTablosu">
             <thead>
                 <tr>
@@ -318,6 +103,10 @@
         </table>
         <p id="guncellemeZamani"
             style="text-align:center; margin: 3rem 0 1rem 0; font-size: 1.1rem; color: #555; font-weight: 500;"></p>
+        <section style="text-align:center; font-size:1rem; color:#666; margin-top: 2rem;">
+            <p>Elazığ'da en güncel gram altın, çeyrek altın ve bilezik fiyatlarını Sezgin Kuyumculuk üzerinden takip
+                edin. Günlük verilerle anlık bilgilendirme sunuyoruz.</p>
+        </section>
     </div>
 
     <script defer>
@@ -448,7 +237,7 @@
         kontrolMesaiSaati();
         // Artık döviz kurları fiyatlar.json içinden alınacak
         veriYukle();
-        setInterval(kontrolEtVeYenile, 10000);
+        setInterval(kontrolEtVeYenile, 60000);
 
     </script>
     <nav aria-label="Hızlı iletişim"
@@ -456,10 +245,12 @@
         <a href="tel:+905394325678" class="action-button phone-btn">📞 Bizi Ara</a>
         <a href="https://wa.me/905394325678?text=Merhaba,%20alt%C4%B1n%20fiyatlar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
             target="_blank" class="action-button whatsapp-btn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">WhatsApp ile Yaz
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                alt="Elazığ WhatsApp iletişim">WhatsApp ile Yaz
         </a>
         <a href="https://www.instagram.com/sezginkuyumculuk_23/" target="_blank" class="action-button instagram-btn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">Instagram
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+                alt="Sezgin Kuyumculuk Instagram">Instagram
         </a>
     </nav>
     <p
