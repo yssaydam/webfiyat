@@ -48,6 +48,18 @@
 <!-- Removed duplicate/old manifest and head tags -->
 
 <body>
+    <div class="drawer">
+        <button class="menu-toggle" onclick="toggleDrawer()">☰ Menü</button>
+        <nav class="drawer-nav" id="drawerNav">
+            <a href="#">Anasayfa</a>
+            <a href="#">Fiyatlar</a>
+            <a href="#">Ürünler</a>
+            <a href="#hakkimizda">Hakkımızda</a>
+            <a href="#iletisim">İletişim</a>
+            <a href="https://wa.me/905394325678" target="_blank">WhatsApp</a>
+            <a href="https://instagram.com/sezginkuyumculuk_23" target="_blank">Instagram</a>
+        </nav>
+    </div>
     <div id="bildirimKutusu" style="
         display: none;
         position: fixed;
@@ -111,6 +123,31 @@
         </section>
     </div>
 
+    <!-- Hakkımızda ve İletişim bölümleri -->
+    <section id="hakkimizda" style="padding: 3rem 1rem; background: #fffdf9; border-top: 1px solid #eee;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 style="color: #c89e50; margin-bottom: 1rem;">Biz Kimiz?</h2>
+            <p style="font-size: 1.1rem; color: #555; line-height: 1.8;">
+                Sezgin Kuyumculuk olarak Elazığ'da yıllardır güven ve kalitenin adresiyiz. Güncel altın ve döviz
+                fiyatlarını
+                anlık olarak sizlere sunarken, şeffaflık ve müşteri memnuniyetini ön planda tutuyoruz.
+                Deneyimli kadromuzla her zaman yanınızdayız.
+            </p>
+        </div>
+    </section>
+    <section id="iletisim" style="padding: 3rem 1rem; background: #fff5f5; border-top: 1px solid #eee;">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 style="color: #c89e50; margin-bottom: 1rem;">İletişim</h2>
+            <p style="font-size: 1.05rem; color: #444; line-height: 1.8;">
+                📍 <strong>Adres:</strong> İzzetpaşa Camii Pasajı No:98, Merkez / Elazığ<br>
+                📞 <strong>Telefon:</strong> <a href="tel:+905394325678" style="color:#800;">+90 539 432 56 78</a><br>
+                💬 <strong>WhatsApp:</strong> <a href="https://wa.me/905394325678" target="_blank"
+                    style="color:#800;">Bize Yazın</a><br>
+                📷 <strong>Instagram:</strong> <a href="https://instagram.com/sezginkuyumculuk_23" target="_blank"
+                    style="color:#800;">@sezginkuyumculuk_23</a>
+            </p>
+        </div>
+    </section>
 
     <script defer>
         function kontrolMesaiSaati() {
@@ -393,6 +430,12 @@
             });
             document.addEventListener("contextmenu", function (e) { e.preventDefault() });
         })();
+    </script>
+    <script>
+        function toggleDrawer() {
+            const nav = document.getElementById("drawerNav");
+            nav.classList.toggle("open");
+        }
     </script>
 </body>
 
