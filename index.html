@@ -277,33 +277,6 @@
         </nav>
 
     </section>
-    <!--  
-    <div style="text-align:center; margin-top: 3rem;">
-        <h3 style="color:#c89e50; margin-bottom: 1rem;">Müşteri Yorumları</h3>
-        <div style="max-width: 700px; margin: 0 auto; font-size: 1.05rem; color: #444;">
-            <blockquote
-                style="margin-bottom: 1.5rem; background: #f8f9fa; padding: 1rem 1.5rem; border-left: 4px solid #c89e50;">
-                <strong>Ayşe K.</strong>: "İlgili ve dürüst bir işletme. Fiyatlar her zaman güncel. Tavsiye ederim!"
-            </blockquote>
-            <blockquote
-                style="margin-bottom: 1.5rem; background: #f8f9fa; padding: 1rem 1.5rem; border-left: 4px solid #c89e50;">
-                <strong>Mehmet D.</strong>: "Web sayfası çok kullanışlı. Telefonla hemen bilgi alabildim."
-            </blockquote>
-            <blockquote style="background: #f8f9fa; padding: 1rem 1.5rem; border-left: 4px solid #c89e50;">
-                <strong>Elif Y.</strong>: "Fiyatlar gerçek zamanlı ve doğru. Güvenilir bir kuyumcu."
-            </blockquote>
-        </div>
-    </div>
-    <div style="text-align:center; margin-top: 3rem;">
-        <h3 style="color:#c89e50; margin-bottom: 1rem;">Neden Bizi Tercih Etmelisiniz?</h3>
-        <ul style="list-style: none; padding: 0; max-width: 700px; margin: 0 auto; color: #555; font-size: 1.1rem;">
-            <li style="margin-bottom: 0.5rem;">✅ Güvenilir fiyat bilgisi ve şeffaflık</li>
-            <li style="margin-bottom: 0.5rem;">✅ Yılların deneyimi ve müşteri memnuniyeti</li>
-            <li style="margin-bottom: 0.5rem;">✅ Hızlı iletişim ve anında fiyat güncellemesi</li>
-            <li style="margin-bottom: 0.5rem;">✅ Şık ve kullanıcı dostu dijital deneyim</li>
-        </ul>
-    </div>
-    -->
     <section id="hakkimizda"
         style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #fffdf7; border: 1px solid #eee; border-radius: 12px; text-align: center;">
         <h3 style="color:#c89e50; margin-bottom: 1rem;">Biz Kimiz?</h3>
@@ -387,26 +360,33 @@
             }, 4000);
         }
     </script>
-    <script>
-        const ziyaretciP = document.createElement("p");
-        ziyaretciP.id = "ziyaretciSayisi";
-        ziyaretciP.style.textAlign = "center";
-        ziyaretciP.style.fontSize = "1.05rem";
-        ziyaretciP.style.color = "#666";
-        ziyaretciP.style.marginBottom = "2rem";
-        document.body.appendChild(ziyaretciP);
 
-        function aktifKullanicilariGuncelle() {
-            fetch("analytics.json")
-                .then(res => res.json())
-                .then(data => {
-                    ziyaretciP.innerHTML = `👥 Aktif Kullanıcı Sayısı: <strong>${data.ziyaretci}</strong><br>`;
-                });
-        }
+<script>
+    const ziyaretciP = document.createElement("p");
+    ziyaretciP.id = "ziyaretciSayisi";
+    ziyaretciP.style.textAlign = "center";
+    ziyaretciP.style.fontSize = "1.05rem";
+    ziyaretciP.style.color = "#666";
+    ziyaretciP.style.marginBottom = "2rem";
+    document.body.appendChild(ziyaretciP);
 
-        aktifKullanicilariGuncelle();
-        setInterval(aktifKullanicilariGuncelle, 600000); // 10 dakika
-    </script>
+    function aktifKullanicilariGuncelle() {
+        fetch("analytics.json")
+            .then(res => res.json())
+            .then(data => {
+                const aktif = data.active_users || {};
+                ziyaretciP.innerHTML = `
+                    👥 Aktif Kullanıcılar<br>
+                    Günlük: <strong>${aktif.daily}</strong> &nbsp;|&nbsp;
+                    Aylık: <strong>${aktif.monthly}</strong> &nbsp;|&nbsp;
+                    Yıllık: <strong>${aktif.yearly}</strong>`;
+            });
+    }
+
+    aktifKullanicilariGuncelle();
+    setInterval(aktifKullanicilariGuncelle, 600000); // 10 dakika
+</script>
+
     <script>
         (function () {
             function t(e) { return ["I", "J", "C", "U"].includes(e.toUpperCase()) }
