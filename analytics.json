@@ -1,81 +1,8 @@
 {
-    "updated_at": "2025-06-21T12:43:43.717599",
-    "rows": [
-        {
-            "country": "Türkiye",
-            "active_users": "2104"
-        },
-        {
-            "country": "Netherlands",
-            "active_users": "21"
-        },
-        {
-            "country": "Germany",
-            "active_users": "7"
-        },
-        {
-            "country": "France",
-            "active_users": "4"
-        },
-        {
-            "country": "(not set)",
-            "active_users": "3"
-        },
-        {
-            "country": "Austria",
-            "active_users": "2"
-        },
-        {
-            "country": "Switzerland",
-            "active_users": "2"
-        },
-        {
-            "country": "Azerbaijan",
-            "active_users": "1"
-        },
-        {
-            "country": "Belgium",
-            "active_users": "1"
-        },
-        {
-            "country": "Bosnia & Herzegovina",
-            "active_users": "1"
-        },
-        {
-            "country": "Indonesia",
-            "active_users": "1"
-        },
-        {
-            "country": "Ireland",
-            "active_users": "1"
-        },
-        {
-            "country": "Norway",
-            "active_users": "1"
-        },
-        {
-            "country": "Poland",
-            "active_users": "1"
-        },
-        {
-            "country": "Qatar",
-            "active_users": "1"
-        },
-        {
-            "country": "Romania",
-            "active_users": "1"
-        },
-        {
-            "country": "Russia",
-            "active_users": "1"
-        },
-        {
-            "country": "Saudi Arabia",
-            "active_users": "1"
-        },
-        {
-            "country": "United States",
-            "active_users": "1"
-        }
-    ]
+    "updated_at": "2025-06-21T12:51:31.654885",
+    "active_users": {
+        "daily": "402",
+        "monthly": "2144",
+        "yearly": "2144"
+    }
 }
