@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SEZGİN KUYUMCULUK</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description"
+        content="Sezgin Kuyumculuk - Elazığ'ın güvenilir altın ve döviz fiyatları. Güncel verilerle altın fiyatlarını takip edin.">
+    <meta name="keywords" content="altın fiyatları, Elazığ kuyumcu, çeyrek altın, gram altın, döviz kuru">
+    <meta name="google-site-verification" content="ABC123xyz..." />
+    <meta property="og:title" content="Sezgin Kuyumculuk">
+    <meta property="og:description"
+        content="Elazığ'da güncel altın fiyatları ve döviz kurları. Güvenilir, şeffaf, hızlı.">
+    <meta property="og:image" content="favicon/web-app-manifest-512x512.png">
+    <meta property="og:url" content="https://yssaydam.github.io/altin-fiyatlari/webfiyat/">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Mobile Home Screen Shortcut & Icons -->
+    <!-- Apple Touch Startup Images -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c89e50">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="SEZGİN Kuyumculuk">
+    <meta name="application-name" content="SEZGİN Kuyumculuk">
+    <!-- Additional icons for Android and Windows -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+    <meta name="msapplication-TileImage" content="favicon/favicon-96x96.png">
+    <meta name="msapplication-TileColor" content="#c89e50">
+    <meta name="theme-color" content="#c89e50">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PKD464RSEH"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PKD464RSEH');
+</script>
+<!-- Removed duplicate/old manifest and head tags -->
+
+<body>
+    <!--
+    <div class="drawer">
+        <button class="menu-toggle" onclick="toggleDrawer()">☰ Menü</button>
+        <nav class="drawer-nav" id="drawerNav">
+            <a href="#top">Anasayfa</a>
+            <a href="#fiyatlar">Fiyatlar</a>
+            <a href="#urunler">Ürünler</a>
+            <a href="#hakkimizda">Hakkımızda</a>
+            <a href="#iletisim">İletişim</a>
+            <a href="https://wa.me/905394325678" target="_blank">WhatsApp</a>
+            <a href="https://instagram.com/sezginkuyumculuk_23" target="_blank">Instagram</a>
+        </nav>
+    </div>
+    -->
+    <div id="bildirimKutusu" style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.95);
+        background: linear-gradient(135deg, #fff9e6, #ffeecb);
+        color: #333;
+        padding: 2rem 3rem;
+        border: 3px solid #c89e50;
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 1.4rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        z-index: 9999;
+        opacity: 0;
+        transition: all 0.6s ease;
+        text-align: center;
+        max-width: 90%;
+        line-height: 1.6;
+    ">
+        👋 Sezgin Kuyumculuk’a hoş geldiniz!
+    </div>
+
+    <div id="mesaiDisiUyari" style="display:none; text-align:center; margin:2rem auto; max-width:900px;">
+        <div style="
+            background: linear-gradient(135deg, #fff3cd, #ffeeba);
+            border: 2px solid #f1c40f;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            animation: pulseUyari 2s infinite;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #856404;">
+            ⚠️ Şu anda mesai saatleri dışında! Fiyatlar bilgilendirme amaçlıdır ve güncellenmemektedir.
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>SEZGİN Kuyumculuk</h1>
+        </header>
+
+        <section id="fiyatlar">
+            <h2>Elazığ Güncel Altın Fiyatları</h2>
+            <table id="fiyatTablosu">
+                <thead>
+                    <tr>
+                        <th>Tür</th>
+                        <th>Alış</th>
+                        <th>Satış</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <p id="guncellemeZamani"
+                style="text-align:center; margin: 3rem 0 1rem 0; font-size: 1.1rem; color: #555; font-weight: 500;"></p>
+            <section style="text-align:center; font-size:1rem; color:#666; margin-top: 2rem;">
+                <p>Elazığ'da en güncel gram altın, çeyrek altın ve bilezik fiyatlarını Sezgin Kuyumculuk üzerinden takip
+                    edin. Günlük verilerle anlık bilgilendirme sunuyoruz.</p>
+            </section>
+        </section>
+    </div>
+
+    <section id="urunler">
+
+
+        <script defer>
+            function kontrolMesaiSaati() {
+                const simdi = new Date();
+                const gun = simdi.getDay();
+                const saat = simdi.getHours();
+
+                const mesaiGunu = gun >= 1 && gun <= 6;
+                const mesaiSaati = saat >= 9 && saat < 19;
+
+                const mesaiIci = mesaiGunu && mesaiSaati;
+
+                const uyariDiv = document.getElementById("mesaiDisiUyari");
+                uyariDiv.style.display = mesaiIci ? "none" : "block";
+            }
+
+            let sonVeri = null;
+
+            function guncelleTablo(data) {
+                const guncellemeZamani = data.guncellemeZamani;
+                delete data.guncellemeZamani;
+                const tbody = document.querySelector('#fiyatTablosu tbody');
+                tbody.innerHTML = "";
+
+                Object.entries(data).forEach(([tur, fiyat]) => {
+                    if (typeof fiyat === "object" && fiyat !== null && "alış" in fiyat && "satış" in fiyat) {
+                        const satir = document.createElement('tr');
+
+                        let oncekiFiyat = sonVeri ? sonVeri[tur] : null;
+                        let fark = "";
+                        if (oncekiFiyat && fiyat.satış && oncekiFiyat.satış) {
+                            const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                            const eski = parseFloat(oncekiFiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                            if (!isNaN(yeni) && !isNaN(eski)) {
+                                if (yeni > eski) {
+                                    fark = " <span class='fark-ok green-ok'>↑</span>";
+                                } else if (yeni < eski) {
+                                    fark = " <span class='fark-ok red-ok'>↓</span>";
+                                }
+                            }
+                        }
+
+                        satir.innerHTML = `
+                        <td data-label="Tür">${tur}</td>
+                        <td data-label="Alış">${fiyat.alış}</td>
+                        <td data-label="Satış">${fiyat.satış}${fark}</td>
+                    `;
+                        tbody.appendChild(satir);
+                    }
+                });
+
+                if (guncellemeZamani) {
+                    document.getElementById("guncellemeZamani").textContent =
+                        "Son Güncelleme: " + guncellemeZamani;
+                } else {
+                    document.getElementById("guncellemeZamani").textContent =
+                        "Son Güncelleme: Bilinmiyor";
+                }
+            }
+
+            function gosterBildirim(metin) {
+                const kutu = document.getElementById("bildirimKutusu");
+                kutu.innerHTML = metin;
+                kutu.style.display = "block";
+                setTimeout(() => {
+                    kutu.style.opacity = 1;
+                    kutu.style.transform = "translate(-50%, -50%) scale(1)";
+                }, 50);
+                setTimeout(() => {
+                    kutu.style.opacity = 0;
+                    kutu.style.transform = "translate(-50%, -50%) scale(0.95)";
+                    setTimeout(() => {
+                        kutu.style.display = "none";
+                    }, 600);
+                }, 5000);
+            }
+
+            async function veriYukle() {
+                try {
+                    const res = await fetch('fiyatlar.json', { cache: "no-store" });
+                    const yeniVeri = await res.json();
+                    guncelleTablo(yeniVeri);
+                    sonVeri = { ...yeniVeri };
+                    delete sonVeri.guncellemeZamani;
+                } catch (err) {
+                    gosterBildirim("Veri alınamadı.");
+                    console.error(err);
+                }
+            }
+
+            async function kontrolEtVeYenile() {
+                try {
+                    const res = await fetch('fiyatlar.json', { cache: "no-store" });
+                    const yeniVeri = await res.json();
+                    const veriClone = { ...yeniVeri };
+                    delete veriClone.guncellemeZamani;
+                    if (sonVeri && JSON.stringify(veriClone) !== JSON.stringify(sonVeri)) {
+                        guncelleTablo(yeniVeri);
+
+                        let artan = false;
+                        let azalan = false;
+
+                        Object.entries(yeniVeri).forEach(([tur, fiyat]) => {
+                            const onceki = sonVeri?.[tur];
+                            if (onceki && fiyat?.satış && onceki?.satış) {
+                                const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                                const eski = parseFloat(onceki.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                                if (!isNaN(yeni) && !isNaN(eski)) {
+                                    if (yeni > eski) artan = true;
+                                    if (yeni < eski) azalan = true;
+                                }
+                            }
+                        });
+
+                        if (artan || azalan) {
+                            let mesaj = "📢 Fiyatlar güncellendi";
+                            gosterBildirim(mesaj);
+                        }
+
+                        sonVeri = veriClone;
+                    }
+                } catch (e) {
+                    console.error("Veri kontrol edilemedi", e);
+                }
+            }
+
+            kontrolMesaiSaati();
+            // Artık döviz kurları fiyatlar.json içinden alınacak
+            veriYukle();
+            setInterval(kontrolEtVeYenile, 60000);
+
+        </script>
+        <nav aria-label="Hızlı iletişim"
+            style="position: fixed; bottom: 30px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 14px;">
+            <a href="tel:+905394325678" class="action-button phone-btn">📞 Bizi Ara</a>
+            <a href="https://wa.me/905394325678?text=Merhaba,%20alt%C4%B1n%20fiyatlar%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+                target="_blank" class="action-button whatsapp-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                    alt="Elazığ WhatsApp iletişim">WhatsApp ile Yaz
+            </a>
+            <a href="https://www.instagram.com/sezginkuyumculuk_23/" target="_blank"
+                class="action-button instagram-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+                    alt="Sezgin Kuyumculuk Instagram">Instagram
+            </a>
+        </nav>
+
+    </section>
+    <section id="hakkimizda"
+        style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #fffdf7; border: 1px solid #eee; border-radius: 12px; text-align: center;">
+        <h3 style="color:#c89e50; margin-bottom: 1rem;">Biz Kimiz?</h3>
+        <p style="font-size: 1.05rem; color: #444; line-height: 1.6;">
+            <span style="font-weight: 700; font-family: 'Poppins', sans-serif; font-size: 1.2rem;">SEZGİN
+                Kuyumculuk</span>
+            olarak Elazığ'da yıllardır güvenin adresiyiz. En güncel altın fiyatlarını sizlerle paylaşırken,
+            dürüstlük, şeffaflık ve müşteri memnuniyetini ön planda tutuyoruz. Sadece satış değil, güven de sunuyoruz.
+        </p>
+    </section>
+    <section id="iletisim"
+        style="text-align:center; margin-top: 3rem; padding: 1.5rem; background: #f9f9f9; border-top: 1px solid #ddd;">
+        <h3 style="margin-bottom: 0.8rem; color: #c89e50;">İletişim & Ulaşım</h3>
+        <p style="margin: 0.2rem 0;">📍 Adres: İzzetpaşa Camii Pasajı No:98, Merkez / Elazığ</p>
+        <p style="margin: 0.2rem 0;">🕒 Çalışma Saatleri: Pazartesi - Cumartesi 08:30 - 18:30</p>
+        <p style="margin: 0.2rem 0; color: #b00;"><strong>Pazar günleri kapalıyız.</strong></p>
+        <p style="margin-top: 1rem;"><a href="https://maps.app.goo.gl/D7LBmMmZHg56ThEy8" target="_blank"
+                style="text-decoration:none; color:#007bff;">📌 Haritada Göster</a></p>
+    </section>
+    </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('✅ Service Worker kaydedildi:', reg.scope))
+                .catch(err => console.warn('❌ Service Worker hatası:', err));
+        }
+
+        // Ana ekrana ekleme butonu için tetikleyici
+        let deferredPrompt;
+        const a2hsBtn = document.createElement('button');
+        a2hsBtn.id = 'a2hsBtn';
+        a2hsBtn.textContent = '📲 Ana Ekrana Ekle';
+        a2hsBtn.style.position = 'fixed';
+        a2hsBtn.style.bottom = '20px';
+        a2hsBtn.style.left = '50%';
+        a2hsBtn.style.transform = 'translateX(-50%)';
+        a2hsBtn.style.padding = '12px 20px';
+        a2hsBtn.style.fontSize = '1rem';
+        a2hsBtn.style.border = 'none';
+        a2hsBtn.style.borderRadius = '30px';
+        a2hsBtn.style.backgroundColor = '#c89e50';
+        a2hsBtn.style.color = '#fff';
+        a2hsBtn.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+        a2hsBtn.style.zIndex = '99999';
+        a2hsBtn.style.display = 'none';
+        document.body.appendChild(a2hsBtn);
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            a2hsBtn.style.display = 'block';
+        });
+
+        a2hsBtn.addEventListener('click', () => {
+            a2hsBtn.style.display = 'none';
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('👍 Kullanıcı ana ekrana eklemeyi kabul etti');
+                } else {
+                    console.log('👎 Kullanıcı ana ekrana eklemeyi reddetti');
+                }
+                deferredPrompt = null;
+            });
+        });
+
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            const kutu = document.getElementById("bildirimKutusu");
+            kutu.innerHTML = `👋 Sezgin Kuyumculuk’a hoş geldiniz!`;
+            kutu.style.display = "block";
+            setTimeout(() => {
+                kutu.style.opacity = 1;
+                kutu.style.transform = "translate(-50%, -50%) scale(1)";
+            }, 100);
+            setTimeout(() => {
+                kutu.style.opacity = 0;
+                kutu.style.transform = "translate(-50%, -50%) scale(0.95)";
+                setTimeout(() => {
+                    kutu.style.display = "none";
+                }, 600);
+            }, 4000);
+        }
+    </script>
+
+<script>
+    const ziyaretciP = document.createElement("p");
+    ziyaretciP.id = "ziyaretciSayisi";
+    ziyaretciP.style.textAlign = "center";
+    ziyaretciP.style.fontSize = "1.05rem";
+    ziyaretciP.style.color = "#666";
+    ziyaretciP.style.marginBottom = "2rem";
+    document.body.appendChild(ziyaretciP);
+
+    function aktifKullanicilariGuncelle() {
+        fetch("analytics.json")
+            .then(res => res.json())
+            .then(data => {
+                const aktif = data.active_users || {};
+                ziyaretciP.innerHTML = `
+                    👥 Aktif Kullanıcılar<br>
+                    Günlük: <strong>${aktif.daily}</strong> &nbsp;|&nbsp;
+                    Aylık: <strong>${aktif.monthly}</strong> &nbsp;|&nbsp;
+                    Yıllık: <strong>${aktif.yearly}</strong>`;
+            });
+    }
+
+    aktifKullanicilariGuncelle();
+    setInterval(aktifKullanicilariGuncelle, 600000); // 10 dakika
+</script>
+
+    <script>
+        (function () {
+            function t(e) { return ["I", "J", "C", "U"].includes(e.toUpperCase()) }
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "F12" || (e.ctrlKey && e.shiftKey && t(e.key))) {
+                    e.preventDefault();
+                    alert("Yetkisiz işlem engellendi.");
+                }
+            });
+            document.addEventListener("contextmenu", function (e) { e.preventDefault() });
+        })();
+    </script>
+    <script>
+        function toggleDrawer() {
+            const nav = document.getElementById("drawerNav");
+            nav.classList.toggle("open");
+        }
+    </script>
+</body>
+
+</html>
