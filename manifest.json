@@ -1,0 +1,32 @@
+{
+    "name": "SEZGİN Kuyumculuk",
+    "short_name": "SEZGİN",
+    "start_url": "/webfiyat/index.html",
+    "scope": "/webfiyat/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#ffffff",
+    "theme_color": "#c89e50",
+    "description": "Güncel altın fiyatlarını anlık takip edin. SEZGİN Kuyumculuk her zaman yanınızda!",
+    "lang": "tr",
+    "dir": "ltr",
+    "icons": [
+        {
+            "src": "favicon/web-app-manifest-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "favicon/web-app-manifest-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "favicon/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "prefer_related_applications": false
+}

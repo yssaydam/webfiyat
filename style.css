@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background: linear-gradient(to bottom, #fefefe, #f3e9dc);
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 3rem auto;
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.2rem;
+    letter-spacing: 1.5px;
+    color: #800000;
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    color: #555;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th {
+    background-color: #fafafa;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    color: #444;
+    padding: 16px;
+}
+
+td {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    font-size: 2.1rem;
+    font-weight: 700;
+}
+
+tr {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+tr:hover td {
+    background: #fef6e4;
+    transition: background 0.3s ease;
+}
+
+#guncellemeZamani {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    color: #777;
+}
+
+.fark-ok {
+    font-size: 2rem;
+    animation: fadeOut 10s forwards;
+}
+
+.green-ok {
+    color: green;
+}
+
+.red-ok {
+    color: red;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.3rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    min-width: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.action-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+.phone-btn {
+    background-color: #800000;
+    color: white;
+}
+
+.whatsapp-btn {
+    background-color: #25D366;
+    color: white;
+}
+
+.instagram-btn {
+    background-color: #e1306c;
+    color: white;
+}
+
+.action-button img {
+    height: 28px;
+    margin-right: 12px;
+}
+
+.drawer {
+    position: relative;
+    z-index: 10000;
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    background: #800000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.drawer-nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 220px;
+    height: 100%;
+    background: #fff5f5;
+    border-right: 2px solid #800000;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    padding-top: 60px;
+    transition: left 0.3s ease-in-out;
+}
+
+.drawer-nav.open {
+    left: 0;
+}
+
+.drawer-nav a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #800000;
+    font-weight: 600;
+    border-bottom: 1px solid #e1cfcf;
+}
+
+.drawer-nav a:hover {
+    background: #ffeaea;
+}
+
+/* Mesai dışı uyarı animasyonu */
+@keyframes pulseUyari {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .action-button {
+        font-size: 0.9rem !important;
+        padding: 10px 14px !important;
+        min-width: unset;
+    }
+
+    .action-button img {
+        height: 18px;
+        margin-right: 6px;
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    tr {
+        margin-bottom: 1rem;
+    }
+
+    td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        font-size: 1.7rem;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 1rem;
+        font-weight: bold;
+        text-align: left;
+        color: #999;
+        font-size: 1.3rem;
+    }
+
+    th {
+        display: none;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .drawer {
+        position: relative;
+        z-index: 10000;
+    }
+
+    .menu-toggle {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        font-size: 1.2rem;
+        background: #800000;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        z-index: 10001;
+    }
+
+    .drawer-nav {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        width: 200px;
+        height: 100%;
+        background: #fff5f5;
+        border-right: 2px solid #800000;
+        box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+        padding-top: 60px;
+        transition: left 0.3s ease-in-out;
+    }
+
+    .drawer-nav.open {
+        left: 0;
+    }
+
+    .drawer-nav a {
+        display: block;
+        padding: 15px 20px;
+        text-decoration: none;
+        color: #800000;
+        font-weight: 600;
+        border-bottom: 1px solid #e1cfcf;
+    }
+
+    .drawer-nav a:hover {
+        background: #ffeaea;
+    }
+}
