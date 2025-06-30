@@ -208,7 +208,7 @@
 
             async function veriYukle() {
                 try {
-                    const res = await fetch('https://sezginkuyumculuk.com/fiyatlar.json', { cache: "no-store" });
+                    const res = await fetch('https://116.203.98.213/fiyatlar.json', { cache: "no-store" });
                     const yeniVeri = await res.json();
                     guncelleTablo(yeniVeri);
                     sonVeri = { ...yeniVeri };
@@ -221,7 +221,7 @@
 
             async function kontrolEtVeYenile() {
                 try {
-                    const res = await fetch('https://sezginkuyumculuk.com/fiyatlar.json', { cache: "no-store" });
+                    const res = await fetch('https://116.203.98.213/fiyatlar.json', { cache: "no-store" });
                     const yeniVeri = await res.json();
                     const veriClone = { ...yeniVeri };
                     delete veriClone.guncellemeZamani;
