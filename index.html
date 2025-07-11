@@ -148,20 +148,20 @@
             let sonVeri = null;
 
             function guncelleTablo(data) {
-                const guncellemeZamani = data.guncellemeZamani;
-                delete data.guncellemeZamani;
+                const guncelleme_zamani = data.guncelleme_zamani;
+                delete data.guncelleme_zamani;
                 const tbody = document.querySelector('#fiyatTablosu tbody');
                 tbody.innerHTML = "";
 
                 Object.entries(data).forEach(([tur, fiyat]) => {
-                    if (typeof fiyat === "object" && fiyat !== null && "alış" in fiyat && "satış" in fiyat) {
+                    if (typeof fiyat === "object" && fiyat !== null && "alis" in fiyat && "satis" in fiyat) {
                         const satir = document.createElement('tr');
 
                         let oncekiFiyat = sonVeri ? sonVeri[tur] : null;
                         let fark = "";
-                        if (oncekiFiyat && fiyat.satış && oncekiFiyat.satış) {
-                            const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
-                            const eski = parseFloat(oncekiFiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
+                        if (oncekiFiyat && fiyat.satis && oncekiFiyat.satis) {
+                            const yeni = parseFloat(fiyat.satis.replace(/[^\d,]/g, '').replace(",", "."));
+                            const eski = parseFloat(oncekiFiyat.satis.replace(/[^\d,]/g, '').replace(",", "."));
                             if (!isNaN(yeni) && !isNaN(eski)) {
                                 if (yeni > eski) {
                                     fark = " <span class='fark-ok green-ok'>↑</span>";
@@ -173,16 +173,16 @@
 
                         satir.innerHTML = `
                         <td data-label="Tür">${tur}</td>
-                        <td data-label="Alış">${fiyat.alış}</td>
-                        <td data-label="Satış">${fiyat.satış}${fark}</td>
+                        <td data-label="Alış">${fiyat.alis}</td>
+                        <td data-label="Satış">${fiyat.satis}${fark}</td>
                     `;
                         tbody.appendChild(satir);
                     }
                 });
 
-                if (guncellemeZamani) {
+                if (guncelleme_zamani) {
                     document.getElementById("guncellemeZamani").textContent =
-                        "Son Güncelleme: " + guncellemeZamani;
+                        "Son Güncelleme: " + guncelleme_zamani;
                 } else {
                     document.getElementById("guncellemeZamani").textContent =
                         "Son Güncelleme: Bilinmiyor";
@@ -208,50 +208,34 @@
 
             async function veriYukle() {
                 try {
-                    const res = await fetch('fiyatlar.json', { cache: "no-store" });
+                    const res = await fetch('https://sezginkuyumculuk.com/fiyatlar.json', { cache: "no-store" });
+                    if (!res.ok) {
+                        throw new Error(`Veri alınamadı (HTTP ${res.status})`);
+                    }
                     const yeniVeri = await res.json();
                     guncelleTablo(yeniVeri);
                     sonVeri = { ...yeniVeri };
-                    delete sonVeri.guncellemeZamani;
+                    delete sonVeri.guncelleme_zamani;
                 } catch (err) {
-                    gosterBildirim("Veri alınamadı.");
-                    console.error(err);
+                    gosterBildirim("Veri alınamadı. Lütfen daha sonra tekrar deneyin.");
+                    console.error("HATA:", err);
                 }
             }
 
             async function kontrolEtVeYenile() {
                 try {
-                    const res = await fetch('fiyatlar.json', { cache: "no-store" });
-                    const yeniVeri = await res.json();
-                    const veriClone = { ...yeniVeri };
-                    delete veriClone.guncellemeZamani;
-                    if (sonVeri && JSON.stringify(veriClone) !== JSON.stringify(sonVeri)) {
-                        guncelleTablo(yeniVeri);
-
-                        let artan = false;
-                        let azalan = false;
-
-                        Object.entries(yeniVeri).forEach(([tur, fiyat]) => {
-                            const onceki = sonVeri?.[tur];
-                            if (onceki && fiyat?.satış && onceki?.satış) {
-                                const yeni = parseFloat(fiyat.satış.replace(/[^\d,]/g, '').replace(",", "."));
-                                const eski = parseFloat(onceki.satış.replace(/[^\d,]/g, '').replace(",", "."));
-                                if (!isNaN(yeni) && !isNaN(eski)) {
-                                    if (yeni > eski) artan = true;
-                                    if (yeni < eski) azalan = true;
-                                }
-                            }
-                        });
-
-                        if (artan || azalan) {
-                            let mesaj = "📢 Fiyatlar güncellendi";
-                            gosterBildirim(mesaj);
-                        }
-
-                        sonVeri = veriClone;
+                    const res = await fetch('https://sezginkuyumculuk.com/fiyatlar.json', { cache: "no-store" });
+                    print(res);
+                    if (!res.ok) {
+                        throw new Error(`Veri kontrol edilemedi (HTTP ${res.status})`);
                     }
+                    const yeniVeri = await res.json();
+                    guncelleTablo(yeniVeri);
+                    sonVeri = { ...yeniVeri };
+                    delete sonVeri.guncelleme_zamani;
                 } catch (e) {
-                    console.error("Veri kontrol edilemedi", e);
+                    gosterBildirim("Fiyatlar kontrol edilirken hata oluştu.");
+                    console.error("HATA:", e);
                 }
             }
 
@@ -313,13 +297,13 @@
         a2hsBtn.style.bottom = '20px';
         a2hsBtn.style.left = '50%';
         a2hsBtn.style.transform = 'translateX(-50%)';
-        a2hsBtn.style.padding = '12px 20px';
-        a2hsBtn.style.fontSize = '1rem';
+        a2hsBtn.style.padding = '22px 40px';
+        a2hsBtn.style.fontSize = '1.6rem';
         a2hsBtn.style.border = 'none';
-        a2hsBtn.style.borderRadius = '30px';
+        a2hsBtn.style.borderRadius = '42px';
         a2hsBtn.style.backgroundColor = '#c89e50';
         a2hsBtn.style.color = '#fff';
-        a2hsBtn.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+        a2hsBtn.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
         a2hsBtn.style.zIndex = '99999';
         a2hsBtn.style.display = 'none';
         document.body.appendChild(a2hsBtn);
@@ -360,7 +344,7 @@
             }, 4000);
         }
     </script>
-<!--
+    <!--
 <script>
     const ziyaretciP = document.createElement("p");
     ziyaretciP.id = "ziyaretciSayisi";
@@ -398,7 +382,7 @@
             });
             document.addEventListener("contextmenu", function (e) { e.preventDefault() });
         })();
-    </script> 
+    </script>
     <script>
         function toggleDrawer() {
             const nav = document.getElementById("drawerNav");
